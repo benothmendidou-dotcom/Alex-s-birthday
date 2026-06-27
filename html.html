@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 17th Birthday</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .elegant-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .slide-image {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        .slide-text {
+            transition: opacity 0.4s ease;
+        }
+
+        .continue-btn {
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 15px -3px rgb(244 63 94 / 0.3), 0 4px 6px -4px rgb(244 63 94 / 0.3);
+        }
+        
+        .continue-btn:active {
+            transform: scale(0.95);
+        }
+
+        .progress-dot {
+            transition: all 0.3s ease;
+        }
+
+        .memory-container {
+            background: linear-gradient(to bottom, #fff1f2, #ffffff);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full mx-auto">
+        
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="flex justify-center mb-4">
+                <div class="w-20 h-20 bg-white rounded-full shadow-xl flex items-center justify-center border border-rose-100">
+                    <i class="fa-solid fa-birthday-cake text-5xl text-rose-500"></i>
+                </div>
+            </div>
+            <h1 class="text-5xl font-bold text-rose-600 tracking-tighter elegant-text">Happy 17th Birthday</h1>
+            <p class="mt-3 text-xl text-gray-600 font-light">A little journey through the years...</p>
+        </div>
+
+        <!-- Memory Container -->
+        <div class="memory-container rounded-3xl shadow-2xl border border-rose-100 overflow-hidden p-6">
+            
+            <!-- Progress Dots -->
+            <div class="flex justify-center mb-6">
+                <div id="progress-dots" class="flex items-center gap-3">
+                    <!-- Dots added by JS -->
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="relative mb-7 flex justify-center">
+                <div class="w-full max-w-[300px]">
+                    <img id="slide-image" 
+                         class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-rose-200"
+                         alt="Memory photo">
+                </div>
+            </div>
+
+            <!-- Text -->
+            <div class="text-center px-2 mb-8">
+                <p id="slide-text" 
+                   class="slide-text text-3xl font-semibold text-gray-800 leading-tight elegant-text min-h-[90px] flex items-center justify-center">
+                </p>
+            </div>
+
+            <!-- Tap to continue button -->
+            <div class="flex justify-center">
+                <button id="continue-btn"
+                        class="continue-btn px-10 py-4 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
+                    <span id="btn-text">Tap to continue</span>
+                    <i class="fa-solid fa-arrow-right text-lg"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Final Message -->
+        <div id="final-message" class="hidden mt-6 text-center">
+            <div class="bg-white rounded-3xl shadow-xl border border-rose-100 p-6">
+                <div class="text-6xl mb-4">🎉</div>
+                <h2 class="text-3xl font-bold text-rose-600 elegant-text mb-3">Happy 17th Birthday!</h2>
+                <p class="text-gray-600 text-lg leading-relaxed">
+                    You’ve grown into such an incredible person.<br>
+                    May this year bring you endless joy, beautiful moments,<br>
+                    and everything your heart desires.
+                </p>
+                <div class="mt-6 flex justify-center">
+                    <div class="inline-flex items-center gap-2 text-rose-500">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="font-medium">Made with love</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-8">
+            <p class="text-xs text-gray-400">Open this on your phone • Tap the button to go through each memory</p>
+        </div>
+
+    </div>
+
+    <script>
+        // ==================== CUSTOMIZE HERE ====================
+        const slides = [
+            {
+                text: "This was you when you were 14",
+                image: "https://picsum.photos/seed/you-at-14/600/800"
+            },
+            {
+                text: "This was you when you were 15",
+                image: "https://picsum.photos/seed/you-at-15/600/800"
+            },
+            {
+                text: "This was you when you were 16",
+                image: "https://picsum.photos/seed/you-at-16/600/800"
+            },
+            {
+                text: "And today, you are 17..",
+                image: "https://picsum.photos/seed/you-at-17/600/800"
+            }
+        ];
+        // ========================================================
+
+        let currentSlide = 0;
+        let isEnded = false;
+
+        function updateProgressDots(index) {
+            const container = document.getElementById('progress-dots');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = `progress-dot w-3 h-3 rounded-full ${i === index ? 'bg-rose-500 scale-125' : 'bg-rose-200'}`;
+                container.appendChild(dot);
+            }
+        }
+
+        function showSlide(index) {
+            const slide = slides[index];
+            const imgEl = document.getElementById('slide-image');
+            const textEl = document.getElementById('slide-text');
+            const btn = document.getElementById('continue-btn');
+            const btnText = document.getElementById('btn-text');
+
+            imgEl.style.opacity = '0';
+            textEl.style.opacity = '0';
+
+            setTimeout(() => {
+                imgEl.src = slide.image;
+                textEl.textContent = slide.text;
+                imgEl.style.opacity = '1';
+                textEl.style.opacity = '1';
+            }, 350);
+
+            updateProgressDots(index);
+
+            if (index === slides.length - 1) {
+                btnText.textContent = 'Tap to celebrate';
+                btn.onclick = handleLastSlideClick;
+            } else {
+                btnText.textContent = 'Tap to continue';
+                btn.onclick = handleContinueClick;
+            }
+        }
+
+        function handleContinueClick() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function handleLastSlideClick() {
+            if (isEnded) {
+                resetToStart();
+            } else {
+                endJourney();
+            }
+        }
+
+        function endJourney() {
+            isEnded = true;
+            launchConfetti();
+            
+            const finalMsg = document.getElementById('final-message');
+            finalMsg.classList.remove('hidden');
+            finalMsg.style.opacity = '0';
+            finalMsg.style.transition = 'opacity 0.6s ease';
+            
+            setTimeout(() => {
+                finalMsg.style.opacity = '1';
+            }, 100);
+            
+            const btn = document.getElementById('continue-btn');
+            const btnText = document.getElementById('btn-text');
+            btnText.textContent = 'Replay the memories';
+            btn.onclick = resetToStart;
+            
+            const arrow = btn.querySelector('i');
+            if (arrow) arrow.style.display = 'none';
+        }
+
+        function resetToStart() {
+            isEnded = false;
+            currentSlide = 0;
+            
+            const finalMsg = document.getElementById('final-message');
+            finalMsg.style.transition = 'opacity 0.3s ease';
+            finalMsg.style.opacity = '0';
+            
+            setTimeout(() => {
+                finalMsg.classList.add('hidden');
+                finalMsg.style.opacity = '1';
+                
+                const btn = document.getElementById('continue-btn');
+                const btnText = document.getElementById('btn-text');
+                const arrow = btn.querySelector('i');
+                if (arrow) arrow.style.display = 'inline-block';
+                
+                btnText.textContent = 'Tap to continue';
+                btn.onclick = handleContinueClick;
+                
+                showSlide(0);
+            }, 300);
+        }
+
+        function launchConfetti() {
+            const colors = ['#f43f5e', '#db2777', '#c026d3', '#f472b6', '#fbbf24'];
+            const confettiCount = 180;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetto = document.createElement('div');
+                    confetto.style.position = 'fixed';
+                    confetto.style.zIndex = '99999';
+                    confetto.style.width = Math.random() * 12 + 6 + 'px';
+                    confetto.style.height = confetto.style.width;
+                    confetto.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetto.style.borderRadius = Math.random() > 0.6 ? '50%' : '2px';
+                    confetto.style.left = Math.random() * window.innerWidth + 'px';
+                    confetto.style.top = '-20px';
+                    confetto.style.opacity = Math.random() * 0.7 + 0.6;
+                    confetto.style.pointerEvents = 'none';
+                    document.body.appendChild(confetto);
+
+                    const duration = Math.random() * 2800 + 2200;
+                    const horizontalDrift = (Math.random() - 0.5) * 180;
+                    const rotation = Math.random() * 720 - 360;
+
+                    confetto.animate([
+                        { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: confetto.style.opacity },
+                        { transform: `translateY(${window.innerHeight + 120}px) translateX(${horizontalDrift}px) rotate(${rotation}deg)`, opacity: 0 }
+                    ], {
+                        duration: duration,
+                        easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
+                    }).onfinish = () => confetto.remove();
+                }, i * 1.8);
+            }
+        }
+
+        function setupKeyboardControls() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    const btn = document.getElementById('continue-btn');
+                    if (btn) btn.click();
+                }
+            });
+        }
+
+        function init() {
+            showSlide(0);
+            updateProgressDots(0);
+            setupKeyboardControls();
+            
+            // Tap cake icon for confetti
+            const cake = document.querySelector('.fa-birthday-cake');
+            if (cake) {
+                cake.style.cursor = 'pointer';
+                cake.addEventListener('click', () => launchConfetti());
+            }
+
+            const btn = document.getElementById('continue-btn');
+            btn.onclick = handleContinueClick;
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
