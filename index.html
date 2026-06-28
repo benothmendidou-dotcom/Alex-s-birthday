@@ -9,16 +9,32 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
      
-        body { font-family: 'Inter', system_ui, sans-serif; }
+        body { 
+            font-family: 'Inter', system_ui, sans-serif; 
+            background: linear-gradient(180deg, #0f172a 0%, #1e1135 50%, #0c1220 100%);
+            color: #e0e7ff;
+        }
         .elegant-text { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.1; }
-        .slide-image { transition: opacity 0.4s ease, transform 0.4s ease; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+        .slide-image { transition: opacity 0.4s ease, transform 0.4s ease; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
         .slide-text { transition: opacity 0.4s ease; }
-        .continue-btn { transition: all 0.2s ease; box-shadow: 0 10px 15px -3px rgb(244 63 94 / 0.3), 0 4px 6px -4px rgb(244 63 94 / 0.3); }
+        .continue-btn { 
+            transition: all 0.2s ease; 
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            box-shadow: 0 10px 15px -3px rgb(99 102 241 / 0.3);
+        }
         .continue-btn:active { transform: scale(0.95); }
         .progress-dot { transition: all 0.3s ease; }
-        .memory-container { background: linear-gradient(to bottom, #fff1f2, #ffffff); }
-        .placeholder-card { transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
-        .placeholder-card:hover { transform: scale(1.08) rotate(2deg); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .memory-container { 
+            background: #1e1135;
+            border: 1px solid #4c1d95;
+        }
+        .placeholder-card { 
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease; 
+            background: #312e81;
+            border: 2px solid #4c1d95;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+        .placeholder-card:hover { transform: scale(1.08) rotate(2deg); }
         .placeholder-card:active { transform: scale(0.95) rotate(0deg); }
 
         .tnt-overlay { animation: fadeIn 0.3s ease forwards; }
@@ -67,77 +83,76 @@
             pointer-events: none;
             z-index: 1;
             font-size: 18px;
-            transition: transform 0.1s linear;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full mx-auto">
      
         <!-- Instruction -->
         <div class="text-center mb-2">
-            <p class="text-xs text-rose-400 italic">(Put Pictures Of Your Happiest Moments/Days Through Your Life That You Will Never Forget!!)</p>
+            <p class="text-xs text-indigo-300 italic">(Put Pictures Of Your Happiest Moments/Days Through Your Life That You Will Never Forget!!)</p>
         </div>
         <!-- Top placeholders -->
         <div class="flex justify-center gap-3 mb-6">
-            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
-                <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
-                <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
+            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+                <i class="fa-solid fa-plus text-3xl text-indigo-400"></i>
+                <span class="text-[10px] text-indigo-300 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
-            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
-                <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
-                <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
+            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+                <i class="fa-solid fa-plus text-3xl text-indigo-400"></i>
+                <span class="text-[10px] text-indigo-300 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
-            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
-                <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
-                <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
+            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+                <i class="fa-solid fa-plus text-3xl text-indigo-400"></i>
+                <span class="text-[10px] text-indigo-300 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
         </div>
         <!-- Header -->
         <div class="text-center mb-8">
             <div class="flex justify-center mb-4">
-                <div class="w-20 h-20 bg-white rounded-full shadow-xl flex items-center justify-center border border-rose-100">
-                    <i class="fa-solid fa-birthday-cake text-5xl text-rose-500"></i>
+                <div class="w-20 h-20 bg-[#1e1135] rounded-full shadow-xl flex items-center justify-center border border-indigo-700">
+                    <i class="fa-solid fa-birthday-cake text-5xl text-indigo-400"></i>
                 </div>
             </div>
-            <h1 class="text-5xl font-bold text-rose-600 tracking-tighter elegant-text">Happy Birthday My Love!!</h1>
-            <p class="mt-3 text-xl text-gray-600 font-light">My Cutest Bunny Through The Years!!</p>
+            <h1 class="text-5xl font-bold text-white tracking-tighter elegant-text">Happy Birthday My Love!!</h1>
+            <p class="mt-3 text-xl text-indigo-200 font-light">My Cutest Bunny Through The Years!!</p>
         </div>
         <!-- Memory section -->
         <div class="relative">
             <!-- LEFT placeholders -->
             <div class="absolute -left-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-indigo-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-indigo-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-indigo-400"></i></div>
             </div>
             <!-- RIGHT placeholders -->
             <div class="absolute -right-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-indigo-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-indigo-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-indigo-400"></i></div>
             </div>
             <!-- Memory Container -->
-            <div class="memory-container rounded-3xl shadow-2xl border border-rose-100 overflow-hidden p-6">
+            <div class="memory-container rounded-3xl shadow-2xl border border-indigo-800 overflow-hidden p-6">
                 <div class="flex justify-center mb-6"><div id="progress-dots" class="flex items-center gap-3"></div></div>
                 <div class="relative mb-7 flex justify-center">
                     <div class="w-full max-w-[300px]">
-                        <img id="slide-image" class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-rose-200" alt="Memory photo">
+                        <img id="slide-image" class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-indigo-700" alt="Memory photo">
                     </div>
                 </div>
                 <div class="text-center px-2 mb-8">
-                    <p id="slide-text" class="slide-text text-3xl font-semibold text-gray-800 leading-tight elegant-text min-h-[90px] flex items-center justify-center"></p>
+                    <p id="slide-text" class="slide-text text-3xl font-semibold text-white leading-tight elegant-text min-h-[90px] flex items-center justify-center"></p>
                 </div>
                 <!-- Finalize button -->
                 <div class="flex justify-center mb-3">
                     <button onclick="startFinalize()"
-                            class="text-xs px-5 py-1.5 bg-rose-200 hover:bg-rose-300 active:bg-rose-400 text-rose-700 font-semibold rounded-full shadow-sm transition-all">
+                            class="text-xs px-5 py-1.5 bg-indigo-700 hover:bg-indigo-600 active:bg-indigo-800 text-white font-semibold rounded-full shadow-sm transition-all border border-indigo-500">
                         (Finalize)
                     </button>
                 </div>
                 <!-- Main button -->
                 <div class="flex justify-center">
-                    <button id="continue-btn" class="continue-btn px-10 py-4 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
+                    <button id="continue-btn" class="continue-btn px-10 py-4 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
                         <span id="btn-text">Next!</span>
                         <i class="fa-solid fa-arrow-right text-lg"></i>
                     </button>
@@ -146,16 +161,16 @@
         </div>
         <!-- Final Message -->
         <div id="final-message" class="hidden mt-6 text-center">
-            <div class="bg-white rounded-3xl shadow-xl border border-rose-100 p-6">
+            <div class="bg-[#1e1135] rounded-3xl shadow-2xl border border-indigo-700 p-6">
                 <div class="text-6xl mb-4">🎉</div>
-                <h2 class="text-3xl font-bold text-rose-600 elegant-text mb-3">Happy Birthday!</h2>
-                <p class="text-gray-600 text-lg leading-relaxed">
+                <h2 class="text-3xl font-bold text-white elegant-text mb-3">Happy Birthday!</h2>
+                <p class="text-indigo-200 text-lg leading-relaxed">
                     Since I ever knew you and on, I've only knew such an incredible ellegant person!<br>
                     You grew up so much my love, and I'm so proud of every step you make and with each one i'll keep supporting you..<br>
                     I'm so happy to be here with you this moment now, why? A part of our bond which is growing up together is being achieved, and I will to keep it going as long as life wants it to last, I wish you a wonderful day full of love and gifts!~
                 </p>
                 <div class="mt-6 flex justify-center">
-                    <div class="inline-flex items-center gap-2 text-rose-500">
+                    <div class="inline-flex items-center gap-2 text-indigo-400">
                         <i class="fa-solid fa-heart"></i>
                         <span class="font-medium">Song by me (Made specifically for you!)</span>
                     </div>
@@ -163,24 +178,24 @@
             </div>
         </div>
         <div class="text-center mt-8">
-            <p class="text-xs text-gray-400">Tap the button to swipe! • Tap the "+" to add your own photos!</p>
+            <p class="text-xs text-indigo-300">Tap the button to swipe! • Tap the "+" to add your own photos!</p>
         </div>
     </div>
 
     <!-- Music Player -->
     <div class="fixed bottom-6 right-6 z-50">
-        <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-rose-100 p-3 flex items-center gap-3">
-            <button id="music-toggle" class="w-11 h-11 flex items-center justify-center text-rose-500 hover:text-rose-600 active:scale-95 transition-transform bg-rose-50 hover:bg-rose-100 rounded-2xl">
+        <div class="bg-[#1e1135]/95 backdrop-blur-md rounded-3xl shadow-2xl border border-indigo-700 p-3 flex items-center gap-3">
+            <button id="music-toggle" class="w-11 h-11 flex items-center justify-center text-indigo-400 hover:text-indigo-300 active:scale-95 transition-transform bg-indigo-800 hover:bg-indigo-700 rounded-2xl">
                 <i class="fa-solid fa-play text-xl"></i>
             </button>
             <div class="flex flex-col gap-0.5 pr-1">
                 <div class="flex items-center gap-1.5">
-                    <i class="fa-solid fa-music text-rose-400 text-xs"></i>
-                    <span class="text-[10px] font-medium text-rose-500 tracking-wider">Volume 🔊</span>
+                    <i class="fa-solid fa-music text-indigo-400 text-xs"></i>
+                    <span class="text-[10px] font-medium text-indigo-300 tracking-wider">Volume 🔊</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-volume-down text-rose-300 text-xs"></i>
-                    <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.55" class="w-20 accent-rose-500 cursor-pointer">
+                    <i class="fa-solid fa-volume-down text-indigo-400 text-xs"></i>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.55" class="w-20 accent-indigo-500 cursor-pointer">
                 </div>
             </div>
         </div>
@@ -222,7 +237,7 @@
             container.innerHTML = '';
             for (let i = 0; i < slides.length; i++) {
                 const dot = document.createElement('div');
-                dot.className = `progress-dot w-3 h-3 rounded-full ${i === index ? 'bg-rose-500 scale-125' : 'bg-rose-200'}`;
+                dot.className = `progress-dot w-3 h-3 rounded-full ${i === index ? 'bg-indigo-500 scale-125' : 'bg-indigo-800'}`;
                 container.appendChild(dot);
             }
         }
@@ -304,7 +319,7 @@
         }
 
         function launchConfetti() {
-            const colors = ['#f43f5e', '#db2777', '#c026d3', '#f472b6', '#fbbf24'];
+            const colors = ['#6366f1', '#a855f7', '#c084fc', '#e0e7ff'];
             const confettiCount = 180;
             for (let i = 0; i < confettiCount; i++) {
                 setTimeout(() => {
@@ -332,11 +347,9 @@
                     }).onfinish = () => confetto.remove();
                 }, i * 1.8);
             }
-            // Confetti sound
             playConfettiSound();
         }
 
-        // Confetti sound when clicking cake
         function playConfettiSound() {
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -361,7 +374,7 @@
             } catch (e) {}
         }
 
-        // Photo functions (unchanged)
+        // Photo functions
         function addPhotoToPlaceholder(element) {
             const input = document.createElement('input');
             input.type = 'file';
@@ -374,8 +387,8 @@
                     element.style.position = 'relative';
                     element.innerHTML = `
                         <img src="${ev.target.result}" class="w-full h-full object-cover rounded-[inherit]" alt="Your photo">
-                        <div onclick="event.stopImmediatePropagation(); removePhoto(this)" class="absolute top-1 right-1 bg-white/90 hover:bg-white rounded-full w-6 h-6 flex items-center justify-center cursor-pointer shadow-sm border border-rose-200">
-                            <i class="fa-solid fa-times text-rose-500 text-xs"></i>
+                        <div onclick="event.stopImmediatePropagation(); removePhoto(this)" class="absolute top-1 right-1 bg-white/90 hover:bg-white rounded-full w-6 h-6 flex items-center justify-center cursor-pointer shadow-sm border border-indigo-600">
+                            <i class="fa-solid fa-times text-indigo-500 text-xs"></i>
                         </div>
                     `;
                     element.onclick = () => addPhotoToPlaceholder(element);
@@ -388,9 +401,9 @@
         function removePhoto(closeBtn) {
             const card = closeBtn.parentElement;
             if (card.classList.contains('top-placeholder')) {
-                card.innerHTML = `<i class="fa-solid fa-plus text-3xl text-rose-400"></i><span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>`;
+                card.innerHTML = `<i class="fa-solid fa-plus text-3xl text-indigo-400"></i><span class="text-[10px] text-indigo-300 font-medium mt-0.5 tracking-wide">Add photo</span>`;
             } else {
-                card.innerHTML = `<i class="fa-solid fa-plus text-2xl text-rose-400"></i>`;
+                card.innerHTML = `<i class="fa-solid fa-plus text-2xl text-indigo-400"></i>`;
             }
             card.onclick = () => addPhotoToPlaceholder(card);
             card.style.position = '';
@@ -413,7 +426,6 @@
             `;
             document.body.appendChild(overlay);
 
-            // Start blue leaves
             createBlueLeaves(overlay);
 
             setTimeout(() => {
@@ -464,7 +476,6 @@
             }, 1150);
         }
 
-        // Blue leaves with physics
         function createBlueLeaves(container) {
             const leafEmojis = ['🍃', '🌿', '🍂'];
             for (let i = 0; i < 18; i++) {
@@ -488,7 +499,6 @@
                     easing: 'linear'
                 }).onfinish = () => leaf.remove();
 
-                // Gentle horizontal wind sway
                 setInterval(() => {
                     if (leaf.parentNode) {
                         const currentLeft = parseFloat(leaf.style.left);
@@ -498,7 +508,6 @@
             }
         }
 
-        // Explosion sound (unchanged)
         function playExplosionSound() {
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -614,7 +623,6 @@
             }
         }
 
-        // Music controls
         function setupMusicControls() {
             audio = document.getElementById('bg-music');
             const toggleBtn = document.getElementById('music-toggle');
