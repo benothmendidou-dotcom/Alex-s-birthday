@@ -44,11 +44,36 @@
         .memory-container {
             background: linear-gradient(to bottom, #fff1f2, #ffffff);
         }
+
+        .decor-img {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .decor-img:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .decor-img:active {
+            transform: scale(0.95) rotate(0deg);
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full mx-auto">
         
+        <!-- Top decorative images (3 medium ones) -->
+        <div class="flex justify-center gap-3 mb-6">
+            <img src="https://picsum.photos/id/1011/300/300" 
+                 class="decor-img w-20 h-20 object-cover rounded-2xl border border-rose-200 shadow-lg cursor-pointer"
+                 alt="Decorative memory photo 1" onclick="tapDecorImage(this)">
+            <img src="https://picsum.photos/id/1005/300/300" 
+                 class="decor-img w-20 h-20 object-cover rounded-2xl border border-rose-200 shadow-lg cursor-pointer"
+                 alt="Decorative memory photo 2" onclick="tapDecorImage(this)">
+            <img src="https://picsum.photos/id/160/300/300" 
+                 class="decor-img w-20 h-20 object-cover rounded-2xl border border-rose-200 shadow-lg cursor-pointer"
+                 alt="Decorative memory photo 3" onclick="tapDecorImage(this)">
+        </div>
+
         <!-- Header -->
         <div class="text-center mb-8">
             <div class="flex justify-center mb-4">
@@ -60,41 +85,71 @@
             <p class="mt-3 text-xl text-gray-600 font-light">My Cutest Bunny Through The Years!!</p>
         </div>
 
-        <!-- Memory Container -->
-        <div class="memory-container rounded-3xl shadow-2xl border border-rose-100 overflow-hidden p-6">
+        <!-- Memory section with side decorations -->
+        <div class="relative">
             
-            <!-- Progress Dots -->
-            <div class="flex justify-center mb-6">
-                <div id="progress-dots" class="flex items-center gap-3">
-                    <!-- Dots added by JS -->
+            <!-- LEFT side decorative images (2 + 1 more deeper in layout) -->
+            <div class="absolute -left-3 top-4 flex flex-col gap-2.5 z-20">
+                <img src="https://picsum.photos/id/201/200/200" 
+                     class="decor-img w-14 h-14 object-cover rounded-2xl border border-rose-200 shadow-md cursor-pointer"
+                     alt="Side memory left 1" onclick="tapDecorImage(this)">
+                <img src="https://picsum.photos/id/251/200/200" 
+                     class="decor-img w-14 h-14 object-cover rounded-2xl border border-rose-200 shadow-md cursor-pointer"
+                     alt="Side memory left 2" onclick="tapDecorImage(this)">
+                <img src="https://picsum.photos/id/30/200/200" 
+                     class="decor-img w-14 h-14 object-cover rounded-2xl border border-rose-200 shadow-md cursor-pointer"
+                     alt="Side memory left 3" onclick="tapDecorImage(this)">
+            </div>
+
+            <!-- RIGHT side decorative images (2 + 1 more deeper in layout) -->
+            <div class="absolute -right-3 top-4 flex flex-col gap-2.5 z-20">
+                <img src="https://picsum.photos/id/133/200/200" 
+                     class="decor-img w-14 h-14 object-cover rounded-2xl border border-rose-200 shadow-md cursor-pointer"
+                     alt="Side memory right 1" onclick="tapDecorImage(this)">
+                <img src="https://picsum.photos/id/40/200/200" 
+                     class="decor-img w-14 h-14 object-cover rounded-2xl border border-rose-200 shadow-md cursor-pointer"
+                     alt="Side memory right 2" onclick="tapDecorImage(this)">
+                <img src="https://picsum.photos/id/29/200/200" 
+                     class="decor-img w-14 h-14 object-cover rounded-2xl border border-rose-200 shadow-md cursor-pointer"
+                     alt="Side memory right 3" onclick="tapDecorImage(this)">
+            </div>
+
+            <!-- Memory Container -->
+            <div class="memory-container rounded-3xl shadow-2xl border border-rose-100 overflow-hidden p-6">
+                
+                <!-- Progress Dots -->
+                <div class="flex justify-center mb-6">
+                    <div id="progress-dots" class="flex items-center gap-3">
+                        <!-- Dots added by JS -->
+                    </div>
                 </div>
-            </div>
 
-            <!-- Image -->
-            <div class="relative mb-7 flex justify-center">
-                <div class="w-full max-w-[300px]">
-                    <img id="slide-image" 
-                         class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-rose-200"
-                         alt="Memory photo">
+                <!-- Image -->
+                <div class="relative mb-7 flex justify-center">
+                    <div class="w-full max-w-[300px]">
+                        <img id="slide-image" 
+                             class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-rose-200"
+                             alt="Memory photo">
+                    </div>
                 </div>
-            </div>
 
-            <!-- Text -->
-            <div class="text-center px-2 mb-8">
-                <p id="slide-text" 
-                   class="slide-text text-3xl font-semibold text-gray-800 leading-tight elegant-text min-h-[90px] flex items-center justify-center">
-                </p>
-            </div>
+                <!-- Text -->
+                <div class="text-center px-2 mb-8">
+                    <p id="slide-text" 
+                       class="slide-text text-3xl font-semibold text-gray-800 leading-tight elegant-text min-h-[90px] flex items-center justify-center">
+                    </p>
+                </div>
 
-            <!-- Tap to continue button -->
-            <div class="flex justify-center">
-                <button id="continue-btn"
-                        class="continue-btn px-10 py-4 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
-                    <span id="btn-text">Tap to continue</span>
-                    <i class="fa-solid fa-arrow-right text-lg"></i>
-                </button>
-            </div>
+                <!-- Tap to continue button -->
+                <div class="flex justify-center">
+                    <button id="continue-btn"
+                            class="continue-btn px-10 py-4 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
+                        <span id="btn-text">Tap to continue</span>
+                        <i class="fa-solid fa-arrow-right text-lg"></i>
+                    </button>
+                </div>
 
+            </div>
         </div>
 
         <!-- Final Message -->
@@ -105,7 +160,7 @@
                 <p class="text-gray-600 text-lg leading-relaxed">
                     Since I ever knew you and on, I've only knew such an incredible ellegant person!<br>
                     You grew up so much my love, and I'm so proud of every step you make and with each one i'll keep supporting you..<br>
-                    I'm so happy to be here with you this moment now, why? A part of our bond which is growing up together is being achieved, and I will to keep it going as long as life wants it to last, I wish you a wonderful day full of love and gifts!~
+                    I'm so happy to be here with you this moment now, why? A part of our bond which is growing up together is being achieved, and I will to keep it going as long as life wants it to last, I wish you a wonderful day full of love and gifts!\~
                 </p>
                 <div class="mt-6 flex justify-center">
                     <div class="inline-flex items-center gap-2 text-rose-500">
@@ -122,6 +177,62 @@
         </div>
 
     </div>
+
+    <!-- Floating Music Player (always available, bottom right) -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-rose-100 p-3 flex items-center gap-3">
+            <button id="music-toggle"
+                    class="w-11 h-11 flex items-center justify-center text-rose-500 hover:text-rose-600 active:scale-95 transition-transform bg-rose-50 hover:bg-rose-100 rounded-2xl">
+                <i class="fa-solid fa-play text-xl"></i>
+            </button>
+            
+            <div class="flex flex-col gap-0.5 pr-1">
+                <div class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-music text-rose-400 text-xs"></i>
+                    <span class="text-[10px] font-medium text-rose-500 tracking-wider">OUR SONG</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-volume-down text-rose-300 text-xs"></i>
+                    <input type="range" id="volume-slider" 
+                           min="0" max="1" step="0.05" value="0.55"
+                           class="w-20 accent-rose-500 cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative Image Modal (sweet & wholesome) -->
+    <div id="decor-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onclick="closeDecorModal()">
+        <div class="bg-white rounded-3xl max-w-[92%] w-full max-w-sm overflow-hidden shadow-2xl" onclick="event.stopImmediatePropagation()">
+            <div class="relative">
+                <img id="modal-image" class="w-full aspect-square object-cover" alt="Enlarged decorative memory">
+                <button onclick="closeDecorModal()" 
+                        class="absolute top-3 right-3 w-9 h-9 bg-white/95 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-900 shadow">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-5 text-center">
+                <p id="modal-text" class="text-gray-700 text-lg elegant-text leading-snug"></p>
+                <div class="mt-4 flex justify-center">
+                    <div class="inline-flex items-center gap-1.5 text-rose-500 text-sm font-medium">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>A little piece of our story</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio element for looped song -->
+    <!-- 
+        ==================== SONG SETUP ====================
+        1. Replace src="song.mp3" with your actual song file name (e.g. "our_song.mp3" or "birthday_love.mp3")
+        2. Make sure the file is in the same folder as this HTML file.
+        3. The song loops automatically.
+        4. Use the floating player (bottom right) to play/pause and control volume.
+        5. The music automatically pauses when you switch tabs, minimize the browser, or leave the page.
+    -->
+    <audio id="bg-music" loop src="song.mp3"></audio>
 
     <script>
         // ==================== CUSTOMIZE HERE ====================
@@ -143,10 +254,24 @@
                 image: "IMG_8566.Png"
             }
         ];
+
+        // Decorative images are already set above with picsum placeholders.
+        // Replace the src URLs with your own image files from your device 
+        // (e.g. "decor_top1.jpg", "side_left1.png") so everything works offline too.
         // ========================================================
 
         let currentSlide = 0;
         let isEnded = false;
+        let audio;
+        let isMusicPlaying = false;
+
+        const decorMessages = [
+            "This one always makes my heart skip a beat 💕",
+            "You look so beautiful here, my love",
+            "A moment I'll treasure forever",
+            "Every photo with you is my favorite",
+            "Growing up together has been the best adventure"
+        ];
 
         function updateProgressDots(index) {
             const container = document.getElementById('progress-dots');
@@ -273,7 +398,7 @@
 
                     confetto.animate([
                         { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: confetto.style.opacity },
-                        { transform: `translateY(${window.innerHeight + 120}px) translateX(${horizontalDrift}px) rotate(${rotation}deg)`, opacity: 0 }
+                        { transform: `translateY(\( {window.innerHeight + 120}px) translateX( \){horizontalDrift}px) rotate(${rotation}deg)`, opacity: 0 }
                     ], {
                         duration: duration,
                         easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
@@ -282,33 +407,33 @@
             }
         }
 
-        function setupKeyboardControls() {
-            document.addEventListener('keydown', function(e) {
-                if (e.key === ' ' || e.key === 'Enter') {
-                    e.preventDefault();
-                    const btn = document.getElementById('continue-btn');
-                    if (btn) btn.click();
-                }
-            });
+        function tapDecorImage(imgEl) {
+            const modal = document.getElementById('decor-modal');
+            const modalImg = document.getElementById('modal-image');
+            const modalText = document.getElementById('modal-text');
+
+            modalImg.src = imgEl.src;
+            modalText.textContent = decorMessages[Math.floor(Math.random() * decorMessages.length)];
+
+            modal.classList.remove('hidden');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.transition = 'opacity 0.2s ease';
+                modal.style.opacity = '1';
+            }, 10);
         }
 
-        function init() {
-            showSlide(0);
-            updateProgressDots(0);
-            setupKeyboardControls();
-            
-            // Tap cake icon for confetti
-            const cake = document.querySelector('.fa-birthday-cake');
-            if (cake) {
-                cake.style.cursor = 'pointer';
-                cake.addEventListener('click', () => launchConfetti());
-            }
-
-            const btn = document.getElementById('continue-btn');
-            btn.onclick = handleContinueClick;
+        function closeDecorModal() {
+            const modal = document.getElementById('decor-modal');
+            modal.style.transition = 'opacity 0.2s ease';
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.style.opacity = '1';
+                modal.style.transition = '';
+            }, 200);
         }
 
-        window.onload = init;
-    </script>
-</body>
-</html>
+        function setupMusicControls() {
+            audio = document.getElementById('bg-music');
+            const toggleBtn = document.getElementById('musi
