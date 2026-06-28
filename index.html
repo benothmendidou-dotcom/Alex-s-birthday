@@ -206,15 +206,15 @@
         //=====FOR ME HERE=====
         const slides = [
             {
-                text: "This was you when you were 14",
+                text: "This was you when you were 14, We first met..",
                 image: "IMG_3967.Png"
             },
             {
-                text: "This was you when you were 15",
+                text: "Then.. was you when you turned 15, It was when I made you your first gift! The minecraft map!",
                 image: "IMG_3579.png"
             },
             {
-                text: "This was you when you were 16",
+                text: "The year after, quickly yet, you turned 16..",
                 image: "IMG_3672.Png"
             },
             {
@@ -288,7 +288,7 @@
            
             const btn = document.getElementById('continue-btn');
             const btnText = document.getElementById('btn-text');
-            btnText.textContent = 'Replay the memories';
+            btnText.textContent = 'Revisit Images!';
             btn.onclick = resetToStart;
            
             const arrow = btn.querySelector('i');
@@ -311,7 +311,7 @@
                 const arrow = btn.querySelector('i');
                 if (arrow) arrow.style.display = 'inline-block';
                
-                btnText.textContent = 'Tap to continue';
+                btnText.textContent = 'Next!';
                 btn.onclick = handleContinueClick;
                
                 showSlide(0);
