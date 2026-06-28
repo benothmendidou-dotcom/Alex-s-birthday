@@ -8,39 +8,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
-     
-        body { 
-            font-family: 'Inter', system_ui, sans-serif; 
+    
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
             background: linear-gradient(180deg, #0f172a 0%, #1e1135 50%, #0c1220 100%);
             color: #e0e7ff;
         }
         .elegant-text { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.1; }
         .slide-image { transition: opacity 0.4s ease, transform 0.4s ease; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
         .slide-text { transition: opacity 0.4s ease; }
-        .continue-btn { 
-            transition: all 0.2s ease; 
+        .continue-btn {
+            transition: all 0.2s ease;
             background: linear-gradient(to right, #6366f1, #a855f7);
             box-shadow: 0 10px 15px -3px rgb(99 102 241 / 0.3);
         }
         .continue-btn:active { transform: scale(0.95); }
         .progress-dot { transition: all 0.3s ease; }
-        .memory-container { 
+        .memory-container {
             background: #1e1135;
             border: 1px solid #4c1d95;
         }
-        .placeholder-card { 
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease; 
+        .placeholder-card {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
             background: #312e81;
             border: 2px solid #4c1d95;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
         }
         .placeholder-card:hover { transform: scale(1.08) rotate(2deg); }
         .placeholder-card:active { transform: scale(0.95) rotate(0deg); }
-
         .tnt-overlay { animation: fadeIn 0.3s ease forwards; }
         .tnt-block { animation: tntFall 1.2s ease forwards; }
         .explosion { animation: explode 1.5s ease forwards; }
-       
+      
         @keyframes tntFall {
             0% { transform: translateY(-300px) rotate(0deg); opacity: 0; }
             60% { transform: translateY(80px) rotate(15deg); opacity: 1; }
@@ -51,7 +50,7 @@
             15% { transform: scale(1.6); opacity: 1; }
             100% { transform: scale(3); opacity: 0; }
         }
-       
+      
         .screen-shake { animation: shake 0.6s ease; }
         @keyframes shake {
             0%, 100% { transform: translate(0, 0); }
@@ -72,7 +71,6 @@
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
-
         .nightshade-bg {
             background: linear-gradient(180deg, #0f172a 0%, #1e1135 50%, #0c1220 100%);
         }
@@ -84,7 +82,7 @@
             z-index: 1;
             font-size: 16px;
         }
-        
+       
         .gift-image {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
@@ -93,15 +91,31 @@
             transform: scale(1.03);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3);
         }
-        
+       
         .image-modal {
             animation: fadeInScale 0.3s ease forwards;
+        }
+
+        /* New prominent Finalize button */
+        .finalize-btn {
+            background: linear-gradient(to right, #4f46e5, #7c3aed);
+            box-shadow: 0 10px 15px -3px rgb(79 70 229 / 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        .finalize-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 20px -3px rgb(79 70 229 / 0.5);
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
         }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full mx-auto">
-     
+    
         <!-- Instruction -->
         <div class="text-center mb-2">
             <p class="text-xs text-indigo-300 italic">(Put Pictures Of Your Happiest Moments/Days Through Your Life That You Will Never Forget!!)</p>
@@ -156,13 +170,16 @@
                 <div class="text-center px-2 mb-8">
                     <p id="slide-text" class="slide-text text-3xl font-semibold text-white leading-tight elegant-text min-h-[90px] flex items-center justify-center"></p>
                 </div>
-                <!-- Finalize button -->
-                <div class="flex justify-center mb-3">
+                
+                <!-- REDESIGNED FINALIZE BUTTON -->
+                <div class="flex justify-center mb-4">
                     <button onclick="startFinalize()"
-                            class="text-xs px-5 py-1.5 bg-indigo-700 hover:bg-indigo-600 active:bg-indigo-800 text-white font-semibold rounded-full shadow-sm transition-all border border-indigo-500">
-                        (Finalize)
+                            class="finalize-btn flex items-center gap-2 px-6 py-3 text-white font-semibold rounded-2xl shadow-lg text-sm active:scale-95 transition-all border border-indigo-400">
+                        <i class="fa-solid fa-gift"></i>
+                        <span>Finalize &amp; See Gifts</span>
                     </button>
                 </div>
+                
                 <!-- Main button -->
                 <div class="flex justify-center">
                     <button id="continue-btn" class="continue-btn px-10 py-4 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
@@ -199,7 +216,7 @@
     <div class="fixed bottom-6 right-6 z-50">
         <div class="bg-[#1e1135]/95 backdrop-blur-md rounded-3xl shadow-2xl border border-indigo-700 p-3 flex items-center gap-3">
             <button id="music-toggle" class="w-11 h-11 flex items-center justify-center text-indigo-400 hover:text-indigo-300 active:scale-95 transition-transform bg-indigo-800 hover:bg-indigo-700 rounded-2xl">
-                <i class="fa-solid fa-play text-xl"></i>
+                <i class="fa-solid fa-pause text-xl"></i>
             </button>
             <div class="flex flex-col gap-0.5 pr-1">
                 <div class="flex items-center gap-1.5">
@@ -214,19 +231,19 @@
         </div>
     </div>
 
-    <audio id="bg-music" loop src="song.mp3"></audio>
+    <audio id="bg-music" autoplay loop src="song.mp3"></audio>
 
     <!-- Image Zoom Modal -->
     <div id="image-modal" class="hidden fixed inset-0 bg-black/90 z-[1000] flex items-center justify-center p-4" onclick="closeImageModal()">
         <div class="max-w-[95%] max-h-[90%] relative" onclick="event.stopImmediatePropagation()">
             <img id="modal-image" class="max-w-full max-h-[80vh] rounded-2xl shadow-2xl" alt="Full image">
             <div class="flex justify-center gap-4 mt-4">
-                <button onclick="downloadCurrentImage()" 
+                <button onclick="downloadCurrentImage()"
                         class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full flex items-center gap-2 text-sm font-medium">
                     <i class="fa-solid fa-download"></i>
                     <span>Download</span>
                 </button>
-                <button onclick="closeImageModal()" 
+                <button onclick="closeImageModal()"
                         class="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium">
                     Close
                 </button>
@@ -509,7 +526,7 @@
 
         function createBlueLeaves(container) {
             const leafEmojis = ['🍃', '🌿', '🍂'];
-            
+           
             function spawnLeaf() {
                 if (!container || !container.parentNode) return;
 
@@ -631,10 +648,10 @@
                         <div class="${color} text-2xl font-semibold mb-6 elegant-text">
                             ${message}
                         </div>
-                        
-                        <button onclick="showFinalGifts(this.closest('.fixed'))" 
+                       
+                        <button onclick="showFinalGifts(this.closest('.fixed'))"
                                 class="mt-6 px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-full flex items-center justify-center gap-2 mx-auto">
-                            <span>See your gifts ❤️</span>
+                            <span>NEXT!!</span>
                         </button>
                     </div>
                 `;
@@ -650,25 +667,25 @@
                             (Thank you for taking in my gift, here's two quickies I made since I'm sick and my hand is shaky for art, Your final gift comes tomorrow ❤️)
                         </p>
                     </div>
-                    
+                   
                     <!-- Two placeholder images -->
                     <div class="space-y-4 mb-6">
-                        <!-- Gift 1 - Replace src with your image -->
+                        <!-- Gift 1 -->
                         <div onclick="zoomImage(this.querySelector('img'))" class="cursor-pointer">
                             <img src="Untitled54_20260628155916.Png" class="gift-image w-full rounded-2xl border border-indigo-700 shadow-xl" alt="Gift 1">
                         </div>
-                        
-                        <!-- Gift 2 - Replace src with your image -->
+                       
+                        <!-- Gift 2 -->
                         <div onclick="zoomImage(this.querySelector('img'))" class="cursor-pointer">
                             <img src="Untitled53_20260628143414.Png" class="gift-image w-full rounded-2xl border border-indigo-700 shadow-xl" alt="Gift 2">
                         </div>
                     </div>
-                    
+                   
                     <p class="text-xs text-indigo-300 mb-4">
                         Gifts made: Website + Background song theme + Arts + ???(Take guess!)
                     </p>
-                    
-                    <button onclick="this.closest('.fixed').remove()" 
+                   
+                    <button onclick="this.closest('.fixed').remove()"
                             class="px-8 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm font-medium">
                         Close
                     </button>
@@ -676,11 +693,10 @@
             `;
         }
 
-        // Image zoom modal
         function zoomImage(imgElement) {
             const modal = document.getElementById('image-modal');
             const modalImg = document.getElementById('modal-image');
-            
+           
             modalImg.src = imgElement.src;
             currentDownloadSrc = imgElement.src;
             modal.classList.remove('hidden');
@@ -695,7 +711,7 @@
 
         function downloadCurrentImage() {
             if (!currentDownloadSrc) return;
-            
+           
             const link = document.createElement('a');
             link.href = currentDownloadSrc;
             link.download = 'gift-from-me.jpg';
@@ -738,8 +754,20 @@
             const toggleBtn = document.getElementById('music-toggle');
             const volumeSlider = document.getElementById('volume-slider');
             if (!audio || !toggleBtn || !volumeSlider) return;
+
+            // Auto-play the song
+            audio.play().then(() => {
+                isMusicPlaying = true;
+                toggleBtn.innerHTML = `<i class="fa-solid fa-pause text-xl"></i>`;
+            }).catch(() => {
+                // If auto-play is blocked, keep it paused
+                isMusicPlaying = false;
+                toggleBtn.innerHTML = `<i class="fa-solid fa-play text-xl"></i>`;
+            });
+
             audio.volume = 0.55;
             volumeSlider.value = audio.volume;
+
             toggleBtn.onclick = function() {
                 if (isMusicPlaying) {
                     audio.pause();
@@ -752,9 +780,11 @@
                     }).catch(() => {});
                 }
             };
+
             volumeSlider.oninput = function() {
                 audio.volume = parseFloat(this.value);
             };
+
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden && audio && !audio.paused) {
                     audio.pause();
@@ -789,7 +819,6 @@
             const btn = document.getElementById('continue-btn');
             btn.onclick = handleContinueClick;
 
-            // Add continuous blue leaves to the beginning of the website
             const mainContainer = document.querySelector('.max-w-md');
             if (mainContainer) {
                 createBlueLeaves(mainContainer);
