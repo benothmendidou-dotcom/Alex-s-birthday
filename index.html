@@ -36,9 +36,7 @@
             100% { transform: scale(3); opacity: 0; } 
         }
         
-        .screen-shake {
-            animation: shake 0.6s ease;
-        }
+        .screen-shake { animation: shake 0.6s ease; }
         @keyframes shake {
             0%, 100% { transform: translate(0, 0); }
             10% { transform: translate(-8px, 4px); }
@@ -47,6 +45,18 @@
             40% { transform: translate(6px, -3px); }
             50% { transform: translate(-4px, 2px); }
             60% { transform: translate(4px, -2px); }
+        }
+
+        /* Smooth transitions for Finalize flow */
+        .smooth-content {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .fade-in {
+            animation: fadeInScale 0.6s ease forwards;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -187,9 +197,9 @@
         ];
 
         // ==================== EDIT THESE MESSAGES ====================
-        const positiveMessage = "I'm so happy you see yourself this way. You are truly special and I love that about you 💕";
-        const negativeMessage = "Even on hard days, remember you are loved and growing every single day. I'm proud of you ❤️";
-        const neutralMessage = "Thank you for sharing how you feel. No matter what, you are important and loved here.";
+        const positiveMessage = "I'm glad you see yourself that way! And as you should, Youre the princess of the day and like i think that you should think that too :)))..";
+        const negativeMessage = "Even if you think it's diffucult, Just love yourself for this day, And hopefully more, You aren't what you think at all! You're far better and that's how I think! Stuff get better, cling into that and one day..";
+        const neutralMessage = "Thanks you for sharing how you feel! Despite being Good or Bad, Remember that i'll always be proud of you and choose you!";
 
         // ==================== MAIN CODE ====================
         const slides = [
@@ -371,78 +381,115 @@
             card.style.position = '';
         }
 
-        // ========== ENHANCED TNT EXPLOSION ==========
+        // ========== SMOOTHER FINALIZE FLOW ==========
         function startFinalize() {
             const overlay = document.createElement('div');
             overlay.className = `fixed inset-0 bg-black z-[999] flex items-center justify-center tnt-overlay`;
             overlay.innerHTML = `
                 <div class="relative w-full max-w-md mx-auto px-6 text-center">
-                    <!-- Falling TNT -->
                     <div class="tnt-block mx-auto mb-8 w-24 h-24 bg-red-600 border-[6px] border-red-900 rounded-xl flex items-center justify-center shadow-[0_0_40px_#ef4444]" style="box-shadow: 0 0 60px #ef4444, inset 0 0 20px #fff;">
                         <div class="text-white text-center">
                             <div class="text-5xl font-black tracking-[4px]">TNT</div>
                         </div>
                     </div>
-
-                    <!-- Main Explosion Ring -->
                     <div id="explosion-ring" class="explosion mx-auto w-48 h-48 bg-orange-500 rounded-full opacity-0" 
                          style="box-shadow: 0 0 120px #f97316, 0 0 200px #ef4444;"></div>
                 </div>
             `;
             document.body.appendChild(overlay);
 
-            // Add screen shake + flash
             setTimeout(() => {
+                const ring = document.getElementById('explosion-ring');
+                if (ring) ring.style.opacity = '1';
+
                 document.body.classList.add('screen-shake');
                 
                 // Bright flash
                 const flash = document.createElement('div');
-                flash.style.cssText = 'position:fixed;inset:0;background:white;opacity:0.9;z-index:1000;pointer-events:none;';
+                flash.style.cssText = 'position:fixed;inset:0;background:white;opacity:0.85;z-index:1000;pointer-events:none;';
                 document.body.appendChild(flash);
                 
                 setTimeout(() => {
-                    flash.style.transition = 'opacity 0.4s ease';
+                    flash.style.transition = 'opacity 0.5s ease';
                     flash.style.opacity = '0';
-                    setTimeout(() => flash.remove(), 400);
-                }, 80);
+                    setTimeout(() => flash.remove(), 500);
+                }, 100);
 
-                const ring = document.getElementById('explosion-ring');
-                if (ring) ring.style.opacity = '1';
+                launchExplosionParticles();
 
-                launchExplosionParticles(); // More particles
-
-                // Remove shake after animation
                 setTimeout(() => {
                     document.body.classList.remove('screen-shake');
-                }, 600);
+                    
+                    // Smoothly replace content with fade
+                    overlay.style.transition = 'opacity 0.4s ease';
+                    overlay.style.opacity = '0';
 
-                // Show the question + input after explosion
-                setTimeout(() => {
-                    overlay.innerHTML = `
-                        <div class="text-center px-8 max-w-md mx-auto">
-                            <div class="text-white text-3xl font-bold elegant-text mb-8 drop-shadow-lg">
-                                How do you feel about yourself<br>with one word?
-                            </div>
-                            
-                            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/30">
-                                <input id="feeling-input" type="text" placeholder="Type one word..." 
-                                       class="w-full px-4 py-3 rounded-2xl bg-white/90 text-gray-800 text-center text-lg focus:outline-none">
+                    setTimeout(() => {
+                        overlay.style.opacity = '1';
+                        overlay.innerHTML = `
+                            <div class="text-center px-8 max-w-md mx-auto smooth-content fade-in">
+                                <div class="text-white text-3xl font-bold elegant-text mb-8 drop-shadow-lg">
+                                    How do you feel about yourself<br>with one word?
+                                </div>
                                 
-                                <button onclick="checkFeelingWord(this)" 
-                                        class="mt-4 w-full py-3 bg-white text-rose-600 font-semibold rounded-2xl hover:bg-rose-50 transition-colors">
-                                    Submit
-                                </button>
+                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/30">
+                                    <input id="feeling-input" type="text" placeholder="Type one word..." 
+                                           class="w-full px-4 py-3 rounded-2xl bg-white/90 text-gray-800 text-center text-lg focus:outline-none">
+                                    
+                                    <button onclick="checkFeelingWord(this)" 
+                                            class="mt-4 w-full py-3 bg-white text-rose-600 font-semibold rounded-2xl hover:bg-rose-50 transition-colors">
+                                        Submit
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    `;
-                }, 1700);
+                        `;
+                    }, 400);
+                }, 1200);
             }, 1150);
+        }
+
+        function checkFeelingWord(buttonElement) {
+            const input = document.getElementById('feeling-input');
+            const word = input.value.trim().toLowerCase();
+            const overlay = buttonElement.closest('.fixed');
+
+            let message = neutralMessage;
+            let color = 'text-white';
+
+            if (positiveWords.includes(word)) {
+                message = positiveMessage;
+                color = 'text-emerald-300';
+            } else if (negativeWords.includes(word)) {
+                message = negativeMessage;
+                color = 'text-rose-300';
+            }
+
+            // Smooth transition to final message
+            const content = overlay.querySelector('.smooth-content');
+            if (content) {
+                content.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                content.style.opacity = '0';
+                content.style.transform = 'scale(0.95)';
+            }
+
+            setTimeout(() => {
+                overlay.innerHTML = `
+                    <div class="text-center px-8 max-w-md mx-auto smooth-content fade-in">
+                        <div class="text-6xl mb-6">💭</div>
+                        <div class="${color} text-2xl font-semibold mb-6 elegant-text">
+                            ${message}
+                        </div>
+                        <button onclick="this.closest('.fixed').remove()" 
+                                class="mt-4 px-8 py-2.5 bg-white/90 text-rose-600 font-medium rounded-full text-sm">
+                            Close
+                        </button>
+                    </div>
+                `;
+            }, 450);
         }
 
         function launchExplosionParticles() {
             const colors = ['#f97316', '#ef4444', '#fbbf24', '#fff7ed', '#fed7aa'];
-            
-            // Main explosion particles
             for (let i = 0; i < 90; i++) {
                 setTimeout(() => {
                     const p = document.createElement('div');
@@ -470,37 +517,7 @@
             }
         }
 
-        function checkFeelingWord(buttonElement) {
-            const input = document.getElementById('feeling-input');
-            const word = input.value.trim().toLowerCase();
-            const overlay = buttonElement.closest('.fixed');
-
-            let message = neutralMessage;
-            let color = 'text-white';
-
-            if (positiveWords.includes(word)) {
-                message = positiveMessage;
-                color = 'text-emerald-300';
-            } else if (negativeWords.includes(word)) {
-                message = negativeMessage;
-                color = 'text-rose-300';
-            }
-
-            overlay.innerHTML = `
-                <div class="text-center px-8 max-w-md mx-auto">
-                    <div class="text-6xl mb-6">💭</div>
-                    <div class="${color} text-2xl font-semibold mb-6 elegant-text">
-                        ${message}
-                    </div>
-                    <button onclick="this.closest('.fixed').remove()" 
-                            class="mt-4 px-8 py-2.5 bg-white/90 text-rose-600 font-medium rounded-full text-sm">
-                        Close
-                    </button>
-                </div>
-            `;
-        }
-
-        // Music controls (song continues during Finalize)
+        // Music controls
         function setupMusicControls() {
             audio = document.getElementById('bg-music');
             const toggleBtn = document.getElementById('music-toggle');
