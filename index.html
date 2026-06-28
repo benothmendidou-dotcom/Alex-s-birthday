@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
-       
+      
         body {
             font-family: 'Inter', system_ui, sans-serif;
         }
-       
+      
         .elegant-text {
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 700;
@@ -29,7 +29,7 @@
             transition: all 0.2s ease;
             box-shadow: 0 10px 15px -3px rgb(244 63 94 / 0.3), 0 4px 6px -4px rgb(244 63 94 / 0.3);
         }
-       
+      
         .continue-btn:active {
             transform: scale(0.95);
         }
@@ -51,17 +51,46 @@
         .placeholder-card:active {
             transform: scale(0.95) rotate(0deg);
         }
+
+        /* TNT Explosion Styles */
+        .tnt-overlay {
+            animation: fadeIn 0.3s ease forwards;
+        }
+        .tnt-block {
+            animation: tntFall 1.2s ease forwards;
+        }
+        .explosion {
+            animation: explode 1.5s ease forwards;
+        }
+        @keyframes tntFall {
+            0% { transform: translateY(-300px) rotate(0deg); opacity: 0; }
+            60% { transform: translateY(80px) rotate(15deg); opacity: 1; }
+            100% { transform: translateY(120px) rotate(25deg); }
+        }
+        @keyframes explode {
+            0% { transform: scale(0.2); opacity: 0; }
+            20% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full mx-auto">
-       
+      
+        <!-- NEW: Small Finalize button on top -->
+        <div class="flex justify-center mb-3">
+            <button onclick="startFinalize()"
+                    class="text-xs px-5 py-1.5 bg-rose-200 hover:bg-rose-300 active:bg-rose-400 text-rose-700 font-semibold rounded-full shadow-sm transition-all">
+                (Finalize)
+            </button>
+        </div>
+
         <!-- Instruction for the visitor -->
         <div class="text-center mb-2">
             <p class="text-xs text-rose-400 italic">(Put Pictures Of Your Happiest Moments/Days Through Your Life That You Will Never Forget!!)</p>
         </div>
 
-        <!-- Top decorative placeholders (3 medium ones) - tap to add YOUR photos from gallery -->
+        <!-- Top decorative placeholders -->
         <div class="flex justify-center gap-3 mb-6">
             <div onclick="addPhotoToPlaceholder(this)"
                  class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
@@ -79,6 +108,7 @@
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
         </div>
+
         <!-- Header -->
         <div class="text-center mb-8">
             <div class="flex justify-center mb-4">
@@ -89,72 +119,60 @@
             <h1 class="text-5xl font-bold text-rose-600 tracking-tighter elegant-text">Happy Birthday My Love!!</h1>
             <p class="mt-3 text-xl text-gray-600 font-light">My Cutest Bunny Through The Years!!</p>
         </div>
-        <!-- Memory section with side placeholders -->
+
+        <!-- Memory section -->
         <div class="relative">
-           
-            <!-- LEFT side placeholders (2 + 1 more) -->
+            <!-- LEFT side placeholders -->
             <div class="absolute -left-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="addPhotoToPlaceholder(this)"
-                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="addPhotoToPlaceholder(this)"
-                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="addPhotoToPlaceholder(this)"
-                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
             </div>
-            <!-- RIGHT side placeholders (2 + 1 more) -->
+
+            <!-- RIGHT side placeholders -->
             <div class="absolute -right-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="addPhotoToPlaceholder(this)"
-                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="addPhotoToPlaceholder(this)"
-                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="addPhotoToPlaceholder(this)"
-                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
             </div>
+
             <!-- Memory Container -->
             <div class="memory-container rounded-3xl shadow-2xl border border-rose-100 overflow-hidden p-6">
-               
-                <!-- Progress Dots -->
                 <div class="flex justify-center mb-6">
-                    <div id="progress-dots" class="flex items-center gap-3">
-                        <!-- Dots added by JS -->
-                    </div>
+                    <div id="progress-dots" class="flex items-center gap-3"></div>
                 </div>
-                <!-- Image -->
+
                 <div class="relative mb-7 flex justify-center">
                     <div class="w-full max-w-[300px]">
-                        <img id="slide-image"
-                             class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-rose-200"
-                             alt="Memory photo">
+                        <img id="slide-image" class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-rose-200" alt="Memory photo">
                     </div>
                 </div>
-                <!-- Text -->
+
                 <div class="text-center px-2 mb-8">
-                    <p id="slide-text"
-                       class="slide-text text-3xl font-semibold text-gray-800 leading-tight elegant-text min-h-[90px] flex items-center justify-center">
-                    </p>
+                    <p id="slide-text" class="slide-text text-3xl font-semibold text-gray-800 leading-tight elegant-text min-h-[90px] flex items-center justify-center"></p>
                 </div>
-                <!-- Tap to continue button -->
+
                 <div class="flex justify-center">
-                    <button id="continue-btn"
-                            class="continue-btn px-10 py-4 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
+                    <button id="continue-btn" class="continue-btn px-10 py-4 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
                         <span id="btn-text">Next!</span>
                         <i class="fa-solid fa-arrow-right text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
+
         <!-- Final Message -->
         <div id="final-message" class="hidden mt-6 text-center">
             <div class="bg-white rounded-3xl shadow-xl border border-rose-100 p-6">
@@ -173,85 +191,77 @@
                 </div>
             </div>
         </div>
-        <!-- Footer -->
+
         <div class="text-center mt-8">
             <p class="text-xs text-gray-400">Tap the button to swipe! • Tap the "+" to add your own photos!</p>
         </div>
     </div>
+
     <!-- Floating Music Player -->
     <div class="fixed bottom-6 right-6 z-50">
         <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-rose-100 p-3 flex items-center gap-3">
-            <button id="music-toggle"
-                    class="w-11 h-11 flex items-center justify-center text-rose-500 hover:text-rose-600 active:scale-95 transition-transform bg-rose-50 hover:bg-rose-100 rounded-2xl">
+            <button id="music-toggle" class="w-11 h-11 flex items-center justify-center text-rose-500 hover:text-rose-600 active:scale-95 transition-transform bg-rose-50 hover:bg-rose-100 rounded-2xl">
                 <i class="fa-solid fa-play text-xl"></i>
             </button>
-           
             <div class="flex flex-col gap-0.5 pr-1">
                 <div class="flex items-center gap-1.5">
                     <i class="fa-solid fa-music text-rose-400 text-xs"></i>
-                    <span class="text-[10px] font-medium text-rose-500 tracking-wider">Volume 🔊 </span>
+                    <span class="text-[10px] font-medium text-rose-500 tracking-wider">Volume 🔊</span>
                 </div>
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-volume-down text-rose-300 text-xs"></i>
-                    <input type="range" id="volume-slider"
-                           min="0" max="1" step="0.05" value="0.55"
-                           class="w-20 accent-rose-500 cursor-pointer">
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.55" class="w-20 accent-rose-500 cursor-pointer">
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Audio -->
     <audio id="bg-music" loop src="song.mp3"></audio>
+
     <script>
         //=====FOR ME HERE=====
         const slides = [
-            {
-                text: "This was you when you were 14, We first met..",
-                image: "IMG_3967.Png"
-            },
-            {
-                text: "Then.. This was you when you turned 15, It was when I made you your first gift! The minecraft map!",
-                image: "IMG_3579.png"
-            },
-            {
-                text: "The year after, quickly yet, you turned 16..",
-                image: "IMG_3672.Png"
-            },
-            {
-                text: "And today, you are 17..",
-                image: "IMG_8566.Png"
-            }
+            { text: "This was you when you were 14, We first met..", image: "IMG_3967.Png" },
+            { text: "Then.. This was you when you turned 15, It was when I made you your first gift! The minecraft map!", image: "IMG_3579.png" },
+            { text: "The year after, quickly yet, you turned 16..", image: "IMG_3672.Png" },
+            { text: "And today, you are 17..", image: "IMG_8566.Png" }
         ];
-        // ========================================================
+
         let currentSlide = 0;
         let isEnded = false;
         let audio;
         let isMusicPlaying = false;
+
         function updateProgressDots(index) {
             const container = document.getElementById('progress-dots');
             container.innerHTML = '';
-           
             for (let i = 0; i < slides.length; i++) {
                 const dot = document.createElement('div');
                 dot.className = `progress-dot w-3 h-3 rounded-full ${i === index ? 'bg-rose-500 scale-125' : 'bg-rose-200'}`;
                 container.appendChild(dot);
             }
         }
+
         function showSlide(index) {
             const slide = slides[index];
             const imgEl = document.getElementById('slide-image');
             const textEl = document.getElementById('slide-text');
             const btn = document.getElementById('continue-btn');
             const btnText = document.getElementById('btn-text');
+
             imgEl.style.opacity = '0';
             textEl.style.opacity = '0';
+
             setTimeout(() => {
                 imgEl.src = slide.image;
                 textEl.textContent = slide.text;
                 imgEl.style.opacity = '1';
                 textEl.style.opacity = '1';
             }, 350);
+
             updateProgressDots(index);
+
             if (index === slides.length - 1) {
                 btnText.textContent = 'Tap to celebrate';
                 btn.onclick = handleLastSlideClick;
@@ -260,12 +270,14 @@
                 btn.onclick = handleContinueClick;
             }
         }
+
         function handleContinueClick() {
             if (currentSlide < slides.length - 1) {
                 currentSlide++;
                 showSlide(currentSlide);
             }
         }
+
         function handleLastSlideClick() {
             if (isEnded) {
                 resetToStart();
@@ -273,54 +285,56 @@
                 endJourney();
             }
         }
+
         function endJourney() {
             isEnded = true;
             launchConfetti();
-           
+
             const finalMsg = document.getElementById('final-message');
             finalMsg.classList.remove('hidden');
             finalMsg.style.opacity = '0';
             finalMsg.style.transition = 'opacity 0.6s ease';
-           
+
             setTimeout(() => {
                 finalMsg.style.opacity = '1';
             }, 100);
-           
+
             const btn = document.getElementById('continue-btn');
             const btnText = document.getElementById('btn-text');
             btnText.textContent = 'Revisit Images!';
             btn.onclick = resetToStart;
-           
+
             const arrow = btn.querySelector('i');
             if (arrow) arrow.style.display = 'none';
         }
+
         function resetToStart() {
             isEnded = false;
             currentSlide = 0;
-           
+
             const finalMsg = document.getElementById('final-message');
             finalMsg.style.transition = 'opacity 0.3s ease';
             finalMsg.style.opacity = '0';
-           
+
             setTimeout(() => {
                 finalMsg.classList.add('hidden');
                 finalMsg.style.opacity = '1';
-               
+
                 const btn = document.getElementById('continue-btn');
                 const btnText = document.getElementById('btn-text');
                 const arrow = btn.querySelector('i');
                 if (arrow) arrow.style.display = 'inline-block';
-               
+
                 btnText.textContent = 'Next!';
                 btn.onclick = handleContinueClick;
-               
+
                 showSlide(0);
             }, 300);
         }
+
         function launchConfetti() {
             const colors = ['#f43f5e', '#db2777', '#c026d3', '#f472b6', '#fbbf24'];
             const confettiCount = 180;
-           
             for (let i = 0; i < confettiCount; i++) {
                 setTimeout(() => {
                     const confetto = document.createElement('div');
@@ -335,9 +349,11 @@
                     confetto.style.opacity = Math.random() * 0.7 + 0.6;
                     confetto.style.pointerEvents = 'none';
                     document.body.appendChild(confetto);
+
                     const duration = Math.random() * 2800 + 2200;
                     const horizontalDrift = (Math.random() - 0.5) * 180;
                     const rotation = Math.random() * 720 - 360;
+
                     confetto.animate([
                         { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: confetto.style.opacity },
                         { transform: `translateY(${window.innerHeight + 120}px) translateX(${horizontalDrift}px) rotate(${rotation}deg)`, opacity: 0 }
@@ -348,66 +364,146 @@
                 }, i * 1.8);
             }
         }
-        // ========== NEW: Interactive photo adding from visitor's gallery ==========
+
+        // ========== Interactive photo adding ==========
         function addPhotoToPlaceholder(element) {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
-           
             input.onchange = function(e) {
                 const file = e.target.files[0];
                 if (!file) return;
                 const reader = new FileReader();
                 reader.onload = function(ev) {
-                    // Turn this placeholder into her photo
                     element.style.position = 'relative';
                     element.innerHTML = `
-                        <img src="${ev.target.result}"
-                             class="w-full h-full object-cover rounded-[inherit]"
-                             alt="Your photo from gallery">
-                       
-                        <!-- Small remove button -->
-                        <div onclick="event.stopImmediatePropagation(); removePhoto(this)"
-                             class="absolute top-1 right-1 bg-white/90 hover:bg-white rounded-full w-6 h-6 flex items-center justify-center cursor-pointer shadow-sm border border-rose-200">
+                        <img src="${ev.target.result}" class="w-full h-full object-cover rounded-[inherit]" alt="Your photo from gallery">
+                        <div onclick="event.stopImmediatePropagation(); removePhoto(this)" class="absolute top-1 right-1 bg-white/90 hover:bg-white rounded-full w-6 h-6 flex items-center justify-center cursor-pointer shadow-sm border border-rose-200">
                             <i class="fa-solid fa-times text-rose-500 text-xs"></i>
                         </div>
                     `;
-                   
-                    // Tapping the photo again lets her change/replace it
                     element.onclick = () => addPhotoToPlaceholder(element);
                 };
                 reader.readAsDataURL(file);
             };
-           
-            input.click(); // This opens the gallery and asks for permission
+            input.click();
         }
+
         function removePhoto(closeBtn) {
             const card = closeBtn.parentElement;
-           
-            // Restore the original + look depending on size
             if (card.classList.contains('top-placeholder')) {
-                card.innerHTML = `
-                    <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
-                    <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
-                `;
+                card.innerHTML = `<i class="fa-solid fa-plus text-3xl text-rose-400"></i><span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>`;
             } else {
-                card.innerHTML = `
-                    <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
-                `;
+                card.innerHTML = `<i class="fa-solid fa-plus text-2xl text-rose-400"></i>`;
             }
-           
-            // Reset click behavior
             card.onclick = () => addPhotoToPlaceholder(card);
             card.style.position = '';
         }
-        // ========================================================================
+
+        // ========== NEW: Finalize Button + TNT Explosion ==========
+        function startFinalize() {
+            // Create full-screen TNT explosion overlay
+            const overlay = document.createElement('div');
+            overlay.className = `fixed inset-0 bg-black z-[999] flex items-center justify-center tnt-overlay`;
+            overlay.innerHTML = `
+                <div class="relative w-full max-w-md mx-auto px-6 text-center">
+                    <!-- Falling TNT -->
+                    <div class="tnt-block mx-auto mb-8 w-20 h-20 bg-red-600 border-4 border-red-800 rounded flex items-center justify-center shadow-2xl" style="box-shadow: 0 0 30px #ef4444;">
+                        <div class="text-white text-center">
+                            <div class="text-4xl font-black tracking-widest">TNT</div>
+                            <div class="text-[10px] -mt-1">⚠️</div>
+                        </div>
+                    </div>
+
+                    <!-- Explosion effect -->
+                    <div id="explosion-ring" class="explosion mx-auto w-40 h-40 bg-orange-500 rounded-full opacity-0" 
+                         style="box-shadow: 0 0 80px #f97316, 0 0 160px #ef4444;"></div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+
+            // Trigger explosion animation
+            setTimeout(() => {
+                const ring = document.getElementById('explosion-ring');
+                if (ring) ring.style.opacity = '1';
+
+                // Big flash + particles
+                launchExplosionParticles();
+
+                // After explosion, show the question
+                setTimeout(() => {
+                    overlay.innerHTML = `
+                        <div class="text-center px-8">
+                            <div class="text-white text-4xl font-bold elegant-text mb-6 drop-shadow-lg">
+                                How do you feel about yourself<br>with one word?
+                            </div>
+                            
+                            <!-- Positive & Negative sections (ready for you) -->
+                            <div class="mt-8 space-y-6">
+                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/30">
+                                    <div class="text-emerald-300 font-semibold mb-3">Positive words</div>
+                                    <div class="text-white/90 text-sm leading-relaxed">
+                                        <!-- You can add positive words here later -->
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/30">
+                                    <div class="text-rose-300 font-semibold mb-3">Negative words</div>
+                                    <div class="text-white/90 text-sm leading-relaxed">
+                                        <!-- You can add negative words here later -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }, 1600);
+            }, 1200);
+
+            // Close overlay when clicking anywhere after explosion
+            setTimeout(() => {
+                overlay.onclick = () => overlay.remove();
+            }, 3500);
+        }
+
+        function launchExplosionParticles() {
+            const colors = ['#f97316', '#ef4444', '#fbbf24', '#fff'];
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.style.position = 'fixed';
+                    p.style.left = Math.random() * window.innerWidth + 'px';
+                    p.style.top = (window.innerHeight * 0.4) + 'px';
+                    p.style.width = p.style.height = Math.random() * 10 + 6 + 'px';
+                    p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    p.style.borderRadius = '50%';
+                    p.style.zIndex = '1000';
+                    p.style.pointerEvents = 'none';
+                    document.body.appendChild(p);
+
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 150 + Math.random() * 250;
+
+                    p.animate([
+                        { transform: `translate(0, 0)`, opacity: 1 },
+                        { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`, opacity: 0 }
+                    ], {
+                        duration: 900 + Math.random() * 600,
+                        easing: 'ease-out'
+                    }).onfinish = () => p.remove();
+                }, i * 3);
+            }
+        }
+
+        // ========== Music Controls ==========
         function setupMusicControls() {
             audio = document.getElementById('bg-music');
             const toggleBtn = document.getElementById('music-toggle');
             const volumeSlider = document.getElementById('volume-slider');
             if (!audio || !toggleBtn || !volumeSlider) return;
+
             audio.volume = 0.55;
             volumeSlider.value = audio.volume;
+
             toggleBtn.onclick = function() {
                 if (isMusicPlaying) {
                     audio.pause();
@@ -417,25 +513,23 @@
                     audio.play().then(() => {
                         toggleBtn.innerHTML = `<i class="fa-solid fa-pause text-xl"></i>`;
                         isMusicPlaying = true;
-                    }).catch((err) => {
-                        console.warn('Could not play audio. Replace "song.mp3" with your actual song file.', err);
-                    });
+                    }).catch(() => {});
                 }
             };
+
             volumeSlider.oninput = function() {
                 audio.volume = parseFloat(this.value);
             };
-            // Auto-pause when she leaves the browser/tab
+
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden && audio && !audio.paused) {
                     audio.pause();
-                    if (toggleBtn) {
-                        toggleBtn.innerHTML = `<i class="fa-solid fa-play text-xl"></i>`;
-                    }
+                    if (toggleBtn) toggleBtn.innerHTML = `<i class="fa-solid fa-play text-xl"></i>`;
                     isMusicPlaying = false;
                 }
             });
         }
+
         function setupKeyboardControls() {
             document.addEventListener('keydown', function(e) {
                 if (e.key === ' ' || e.key === 'Enter') {
@@ -445,21 +539,23 @@
                 }
             });
         }
+
         function init() {
             showSlide(0);
             updateProgressDots(0);
             setupKeyboardControls();
             setupMusicControls();
-           
-            // Tap cake for confetti
+
             const cake = document.querySelector('.fa-birthday-cake');
             if (cake) {
                 cake.style.cursor = 'pointer';
                 cake.addEventListener('click', () => launchConfetti());
             }
+
             const btn = document.getElementById('continue-btn');
             btn.onclick = handleContinueClick;
         }
+
         window.onload = init;
     </script>
 </body>
