@@ -8,45 +8,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
-        
+       
         body {
             font-family: 'Inter', system_ui, sans-serif;
         }
-        
+       
         .elegant-text {
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 700;
             line-height: 1.1;
         }
-
         .slide-image {
             transition: opacity 0.4s ease, transform 0.4s ease;
             box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         }
-
         .slide-text {
             transition: opacity 0.4s ease;
         }
-
         .continue-btn {
             transition: all 0.2s ease;
             box-shadow: 0 10px 15px -3px rgb(244 63 94 / 0.3), 0 4px 6px -4px rgb(244 63 94 / 0.3);
         }
-        
+       
         .continue-btn:active {
             transform: scale(0.95);
         }
-
         .progress-dot {
             transition: all 0.3s ease;
         }
-
         .memory-container {
             background: linear-gradient(to bottom, #fff1f2, #ffffff);
         }
-
         .placeholder-card {
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
                         box-shadow 0.2s ease;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
@@ -61,26 +55,30 @@
 </head>
 <body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full mx-auto">
-        
+       
+        <!-- Instruction for the visitor -->
+        <div class="text-center mb-2">
+            <p class="text-xs text-rose-400 italic">(Put Pictures Of Your Happiest Moments/Days Through Your Life That You Will Never Forget!!)</p>
+        </div>
+
         <!-- Top decorative placeholders (3 medium ones) - tap to add YOUR photos from gallery -->
         <div class="flex justify-center gap-3 mb-6">
-            <div onclick="addPhotoToPlaceholder(this)" 
+            <div onclick="addPhotoToPlaceholder(this)"
                  class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
-            <div onclick="addPhotoToPlaceholder(this)" 
+            <div onclick="addPhotoToPlaceholder(this)"
                  class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
-            <div onclick="addPhotoToPlaceholder(this)" 
+            <div onclick="addPhotoToPlaceholder(this)"
                  class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
         </div>
-
         <!-- Header -->
         <div class="text-center mb-8">
             <div class="flex justify-center mb-4">
@@ -91,68 +89,62 @@
             <h1 class="text-5xl font-bold text-rose-600 tracking-tighter elegant-text">Happy Birthday My Love!!</h1>
             <p class="mt-3 text-xl text-gray-600 font-light">My Cutest Bunny Through The Years!!</p>
         </div>
-
         <!-- Memory section with side placeholders -->
         <div class="relative">
-            
+           
             <!-- LEFT side placeholders (2 + 1 more) -->
             <div class="absolute -left-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="addPhotoToPlaceholder(this)" 
+                <div onclick="addPhotoToPlaceholder(this)"
                      class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="addPhotoToPlaceholder(this)" 
+                <div onclick="addPhotoToPlaceholder(this)"
                      class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="addPhotoToPlaceholder(this)" 
+                <div onclick="addPhotoToPlaceholder(this)"
                      class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
             </div>
-
             <!-- RIGHT side placeholders (2 + 1 more) -->
             <div class="absolute -right-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="addPhotoToPlaceholder(this)" 
+                <div onclick="addPhotoToPlaceholder(this)"
                      class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="addPhotoToPlaceholder(this)" 
+                <div onclick="addPhotoToPlaceholder(this)"
                      class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="addPhotoToPlaceholder(this)" 
+                <div onclick="addPhotoToPlaceholder(this)"
                      class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
             </div>
-
             <!-- Memory Container -->
             <div class="memory-container rounded-3xl shadow-2xl border border-rose-100 overflow-hidden p-6">
-                
+               
                 <!-- Progress Dots -->
                 <div class="flex justify-center mb-6">
                     <div id="progress-dots" class="flex items-center gap-3">
                         <!-- Dots added by JS -->
                     </div>
                 </div>
-
                 <!-- Image -->
                 <div class="relative mb-7 flex justify-center">
                     <div class="w-full max-w-[300px]">
-                        <img id="slide-image" 
+                        <img id="slide-image"
                              class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-rose-200"
                              alt="Memory photo">
                     </div>
                 </div>
-
                 <!-- Text -->
                 <div class="text-center px-2 mb-8">
-                    <p id="slide-text" 
+                    <p id="slide-text"
                        class="slide-text text-3xl font-semibold text-gray-800 leading-tight elegant-text min-h-[90px] flex items-center justify-center">
                     </p>
                 </div>
-
                 <!-- Tap to continue button -->
                 <div class="flex justify-center">
                     <button id="continue-btn"
@@ -161,10 +153,8 @@
                         <i class="fa-solid fa-arrow-right text-lg"></i>
                     </button>
                 </div>
-
             </div>
         </div>
-
         <!-- Final Message -->
         <div id="final-message" class="hidden mt-6 text-center">
             <div class="bg-white rounded-3xl shadow-xl border border-rose-100 p-6">
@@ -183,14 +173,11 @@
                 </div>
             </div>
         </div>
-
         <!-- Footer -->
         <div class="text-center mt-8">
             <p class="text-xs text-gray-400">Open this on your phone • Tap the button to go through each memory • Tap the + to add your own photos!</p>
         </div>
-
     </div>
-
     <!-- Floating Music Player -->
     <div class="fixed bottom-6 right-6 z-50">
         <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-rose-100 p-3 flex items-center gap-3">
@@ -198,7 +185,7 @@
                     class="w-11 h-11 flex items-center justify-center text-rose-500 hover:text-rose-600 active:scale-95 transition-transform bg-rose-50 hover:bg-rose-100 rounded-2xl">
                 <i class="fa-solid fa-play text-xl"></i>
             </button>
-            
+           
             <div class="flex flex-col gap-0.5 pr-1">
                 <div class="flex items-center gap-1.5">
                     <i class="fa-solid fa-music text-rose-400 text-xs"></i>
@@ -206,17 +193,15 @@
                 </div>
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-volume-down text-rose-300 text-xs"></i>
-                    <input type="range" id="volume-slider" 
+                    <input type="range" id="volume-slider"
                            min="0" max="1" step="0.05" value="0.55"
                            class="w-20 accent-rose-500 cursor-pointer">
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Audio -->
     <audio id="bg-music" loop src="song.mp3"></audio>
-
     <script>
         //=====FOR ME HERE=====
         const slides = [
@@ -238,42 +223,35 @@
             }
         ];
         // ========================================================
-
         let currentSlide = 0;
         let isEnded = false;
         let audio;
         let isMusicPlaying = false;
-
         function updateProgressDots(index) {
             const container = document.getElementById('progress-dots');
             container.innerHTML = '';
-            
+           
             for (let i = 0; i < slides.length; i++) {
                 const dot = document.createElement('div');
                 dot.className = `progress-dot w-3 h-3 rounded-full ${i === index ? 'bg-rose-500 scale-125' : 'bg-rose-200'}`;
                 container.appendChild(dot);
             }
         }
-
         function showSlide(index) {
             const slide = slides[index];
             const imgEl = document.getElementById('slide-image');
             const textEl = document.getElementById('slide-text');
             const btn = document.getElementById('continue-btn');
             const btnText = document.getElementById('btn-text');
-
             imgEl.style.opacity = '0';
             textEl.style.opacity = '0';
-
             setTimeout(() => {
                 imgEl.src = slide.image;
                 textEl.textContent = slide.text;
                 imgEl.style.opacity = '1';
                 textEl.style.opacity = '1';
             }, 350);
-
             updateProgressDots(index);
-
             if (index === slides.length - 1) {
                 btnText.textContent = 'Tap to celebrate';
                 btn.onclick = handleLastSlideClick;
@@ -282,14 +260,12 @@
                 btn.onclick = handleContinueClick;
             }
         }
-
         function handleContinueClick() {
             if (currentSlide < slides.length - 1) {
                 currentSlide++;
                 showSlide(currentSlide);
             }
         }
-
         function handleLastSlideClick() {
             if (isEnded) {
                 resetToStart();
@@ -297,57 +273,54 @@
                 endJourney();
             }
         }
-
         function endJourney() {
             isEnded = true;
             launchConfetti();
-            
+           
             const finalMsg = document.getElementById('final-message');
             finalMsg.classList.remove('hidden');
             finalMsg.style.opacity = '0';
             finalMsg.style.transition = 'opacity 0.6s ease';
-            
+           
             setTimeout(() => {
                 finalMsg.style.opacity = '1';
             }, 100);
-            
+           
             const btn = document.getElementById('continue-btn');
             const btnText = document.getElementById('btn-text');
             btnText.textContent = 'Replay the memories';
             btn.onclick = resetToStart;
-            
+           
             const arrow = btn.querySelector('i');
             if (arrow) arrow.style.display = 'none';
         }
-
         function resetToStart() {
             isEnded = false;
             currentSlide = 0;
-            
+           
             const finalMsg = document.getElementById('final-message');
             finalMsg.style.transition = 'opacity 0.3s ease';
             finalMsg.style.opacity = '0';
-            
+           
             setTimeout(() => {
                 finalMsg.classList.add('hidden');
                 finalMsg.style.opacity = '1';
-                
+               
                 const btn = document.getElementById('continue-btn');
                 const btnText = document.getElementById('btn-text');
                 const arrow = btn.querySelector('i');
                 if (arrow) arrow.style.display = 'inline-block';
-                
+               
                 btnText.textContent = 'Tap to continue';
                 btn.onclick = handleContinueClick;
-                
+               
                 showSlide(0);
             }, 300);
         }
-
         function launchConfetti() {
             const colors = ['#f43f5e', '#db2777', '#c026d3', '#f472b6', '#fbbf24'];
             const confettiCount = 180;
-            
+           
             for (let i = 0; i < confettiCount; i++) {
                 setTimeout(() => {
                     const confetto = document.createElement('div');
@@ -362,11 +335,9 @@
                     confetto.style.opacity = Math.random() * 0.7 + 0.6;
                     confetto.style.pointerEvents = 'none';
                     document.body.appendChild(confetto);
-
                     const duration = Math.random() * 2800 + 2200;
                     const horizontalDrift = (Math.random() - 0.5) * 180;
                     const rotation = Math.random() * 720 - 360;
-
                     confetto.animate([
                         { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: confetto.style.opacity },
                         { transform: `translateY(${window.innerHeight + 120}px) translateX(${horizontalDrift}px) rotate(${rotation}deg)`, opacity: 0 }
@@ -377,45 +348,42 @@
                 }, i * 1.8);
             }
         }
-
         // ========== NEW: Interactive photo adding from visitor's gallery ==========
         function addPhotoToPlaceholder(element) {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
-            
+           
             input.onchange = function(e) {
                 const file = e.target.files[0];
                 if (!file) return;
-
                 const reader = new FileReader();
                 reader.onload = function(ev) {
                     // Turn this placeholder into her photo
                     element.style.position = 'relative';
                     element.innerHTML = `
-                        <img src="${ev.target.result}" 
-                             class="w-full h-full object-cover rounded-[inherit]" 
+                        <img src="${ev.target.result}"
+                             class="w-full h-full object-cover rounded-[inherit]"
                              alt="Your photo from gallery">
-                        
+                       
                         <!-- Small remove button -->
-                        <div onclick="event.stopImmediatePropagation(); removePhoto(this)" 
+                        <div onclick="event.stopImmediatePropagation(); removePhoto(this)"
                              class="absolute top-1 right-1 bg-white/90 hover:bg-white rounded-full w-6 h-6 flex items-center justify-center cursor-pointer shadow-sm border border-rose-200">
                             <i class="fa-solid fa-times text-rose-500 text-xs"></i>
                         </div>
                     `;
-                    
+                   
                     // Tapping the photo again lets her change/replace it
                     element.onclick = () => addPhotoToPlaceholder(element);
                 };
                 reader.readAsDataURL(file);
             };
-            
+           
             input.click(); // This opens the gallery and asks for permission
         }
-
         function removePhoto(closeBtn) {
             const card = closeBtn.parentElement;
-            
+           
             // Restore the original + look depending on size
             if (card.classList.contains('top-placeholder')) {
                 card.innerHTML = `
@@ -427,23 +395,19 @@
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 `;
             }
-            
+           
             // Reset click behavior
             card.onclick = () => addPhotoToPlaceholder(card);
             card.style.position = '';
         }
         // ========================================================================
-
         function setupMusicControls() {
             audio = document.getElementById('bg-music');
             const toggleBtn = document.getElementById('music-toggle');
             const volumeSlider = document.getElementById('volume-slider');
-
             if (!audio || !toggleBtn || !volumeSlider) return;
-
             audio.volume = 0.55;
             volumeSlider.value = audio.volume;
-
             toggleBtn.onclick = function() {
                 if (isMusicPlaying) {
                     audio.pause();
@@ -458,11 +422,9 @@
                     });
                 }
             };
-
             volumeSlider.oninput = function() {
                 audio.volume = parseFloat(this.value);
             };
-
             // Auto-pause when she leaves the browser/tab
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden && audio && !audio.paused) {
@@ -474,7 +436,6 @@
                 }
             });
         }
-
         function setupKeyboardControls() {
             document.addEventListener('keydown', function(e) {
                 if (e.key === ' ' || e.key === 'Enter') {
@@ -484,24 +445,21 @@
                 }
             });
         }
-
         function init() {
             showSlide(0);
             updateProgressDots(0);
             setupKeyboardControls();
             setupMusicControls();
-            
+           
             // Tap cake for confetti
             const cake = document.querySelector('.fa-birthday-cake');
             if (cake) {
                 cake.style.cursor = 'pointer';
                 cake.addEventListener('click', () => launchConfetti());
             }
-
             const btn = document.getElementById('continue-btn');
             btn.onclick = handleContinueClick;
         }
-
         window.onload = init;
     </script>
 </body>
