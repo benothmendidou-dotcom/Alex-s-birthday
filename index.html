@@ -9,101 +9,73 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
       
-        body {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
-      
-        .elegant-text {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            line-height: 1.1;
-        }
-        .slide-image {
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-        }
-        .slide-text {
-            transition: opacity 0.4s ease;
-        }
-        .continue-btn {
-            transition: all 0.2s ease;
-            box-shadow: 0 10px 15px -3px rgb(244 63 94 / 0.3), 0 4px 6px -4px rgb(244 63 94 / 0.3);
-        }
-      
-        .continue-btn:active {
-            transform: scale(0.95);
-        }
-        .progress-dot {
-            transition: all 0.3s ease;
-        }
-        .memory-container {
-            background: linear-gradient(to bottom, #fff1f2, #ffffff);
-        }
-        .placeholder-card {
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        box-shadow 0.2s ease;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-        .placeholder-card:hover {
-            transform: scale(1.08) rotate(2deg);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-        .placeholder-card:active {
-            transform: scale(0.95) rotate(0deg);
-        }
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .elegant-text { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.1; }
+        .slide-image { transition: opacity 0.4s ease, transform 0.4s ease; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+        .slide-text { transition: opacity 0.4s ease; }
+        .continue-btn { transition: all 0.2s ease; box-shadow: 0 10px 15px -3px rgb(244 63 94 / 0.3), 0 4px 6px -4px rgb(244 63 94 / 0.3); }
+        .continue-btn:active { transform: scale(0.95); }
+        .progress-dot { transition: all 0.3s ease; }
+        .memory-container { background: linear-gradient(to bottom, #fff1f2, #ffffff); }
+        .placeholder-card { transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+        .placeholder-card:hover { transform: scale(1.08) rotate(2deg); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .placeholder-card:active { transform: scale(0.95) rotate(0deg); }
 
-        /* TNT Explosion Styles */
-        .tnt-overlay {
-            animation: fadeIn 0.3s ease forwards;
+        .tnt-overlay { animation: fadeIn 0.3s ease forwards; }
+        .tnt-block { animation: tntFall 1.2s ease forwards; }
+        .explosion { animation: explode 1.5s ease forwards; }
+        
+        @keyframes tntFall { 
+            0% { transform: translateY(-300px) rotate(0deg); opacity: 0; } 
+            60% { transform: translateY(80px) rotate(15deg); opacity: 1; } 
+            100% { transform: translateY(120px) rotate(25deg); } 
         }
-        .tnt-block {
-            animation: tntFall 1.2s ease forwards;
+        @keyframes explode { 
+            0% { transform: scale(0.2); opacity: 0; } 
+            15% { transform: scale(1.6); opacity: 1; } 
+            100% { transform: scale(3); opacity: 0; } 
         }
-        .explosion {
-            animation: explode 1.5s ease forwards;
+        
+        .screen-shake {
+            animation: shake 0.6s ease;
         }
-        @keyframes tntFall {
-            0% { transform: translateY(-300px) rotate(0deg); opacity: 0; }
-            60% { transform: translateY(80px) rotate(15deg); opacity: 1; }
-            100% { transform: translateY(120px) rotate(25deg); }
-        }
-        @keyframes explode {
-            0% { transform: scale(0.2); opacity: 0; }
-            20% { transform: scale(1.3); opacity: 1; }
-            100% { transform: scale(2.5); opacity: 0; }
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-8px, 4px); }
+            20% { transform: translate(8px, -4px); }
+            30% { transform: translate(-6px, 3px); }
+            40% { transform: translate(6px, -3px); }
+            50% { transform: translate(-4px, 2px); }
+            60% { transform: translate(4px, -2px); }
         }
     </style>
 </head>
 <body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full mx-auto">
       
-        <!-- NEW: Small Finalize button on top -->
+        <!-- Small (Finalize) button -->
         <div class="flex justify-center mb-3">
-            <button onclick="startFinalize()"
-                    class="text-xs px-5 py-1.5 bg-rose-200 hover:bg-rose-300 active:bg-rose-400 text-rose-700 font-semibold rounded-full shadow-sm transition-all">
+            <button onclick="startFinalize()" class="text-xs px-5 py-1.5 bg-rose-200 hover:bg-rose-300 active:bg-rose-400 text-rose-700 font-semibold rounded-full shadow-sm transition-all">
                 (Finalize)
             </button>
         </div>
 
-        <!-- Instruction for the visitor -->
+        <!-- Instruction -->
         <div class="text-center mb-2">
             <p class="text-xs text-rose-400 italic">(Put Pictures Of Your Happiest Moments/Days Through Your Life That You Will Never Forget!!)</p>
         </div>
 
-        <!-- Top decorative placeholders -->
+        <!-- Top placeholders -->
         <div class="flex justify-center gap-3 mb-6">
-            <div onclick="addPhotoToPlaceholder(this)"
-                 class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
-            <div onclick="addPhotoToPlaceholder(this)"
-                 class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
-            <div onclick="addPhotoToPlaceholder(this)"
-                 class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+            <div onclick="addPhotoToPlaceholder(this)" class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
@@ -122,48 +94,31 @@
 
         <!-- Memory section -->
         <div class="relative">
-            <!-- LEFT side placeholders -->
+            <!-- LEFT placeholders -->
             <div class="absolute -left-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
-                    <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
-                </div>
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
-                    <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
-                </div>
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
-                    <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
-                </div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
             </div>
 
-            <!-- RIGHT side placeholders -->
+            <!-- RIGHT placeholders -->
             <div class="absolute -right-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
-                    <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
-                </div>
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
-                    <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
-                </div>
-                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
-                    <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
-                </div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
+                <div onclick="addPhotoToPlaceholder(this)" class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md"><i class="fa-solid fa-plus text-2xl text-rose-400"></i></div>
             </div>
 
             <!-- Memory Container -->
             <div class="memory-container rounded-3xl shadow-2xl border border-rose-100 overflow-hidden p-6">
-                <div class="flex justify-center mb-6">
-                    <div id="progress-dots" class="flex items-center gap-3"></div>
-                </div>
-
+                <div class="flex justify-center mb-6"><div id="progress-dots" class="flex items-center gap-3"></div></div>
                 <div class="relative mb-7 flex justify-center">
                     <div class="w-full max-w-[300px]">
                         <img id="slide-image" class="slide-image w-full aspect-[3/4] object-cover rounded-3xl border border-rose-200" alt="Memory photo">
                     </div>
                 </div>
-
                 <div class="text-center px-2 mb-8">
                     <p id="slide-text" class="slide-text text-3xl font-semibold text-gray-800 leading-tight elegant-text min-h-[90px] flex items-center justify-center"></p>
                 </div>
-
                 <div class="flex justify-center">
                     <button id="continue-btn" class="continue-btn px-10 py-4 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-xl font-semibold rounded-full flex items-center gap-3 shadow-xl">
                         <span id="btn-text">Next!</span>
@@ -197,7 +152,7 @@
         </div>
     </div>
 
-    <!-- Floating Music Player -->
+    <!-- Music Player -->
     <div class="fixed bottom-6 right-6 z-50">
         <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-rose-100 p-3 flex items-center gap-3">
             <button id="music-toggle" class="w-11 h-11 flex items-center justify-center text-rose-500 hover:text-rose-600 active:scale-95 transition-transform bg-rose-50 hover:bg-rose-100 rounded-2xl">
@@ -216,11 +171,27 @@
         </div>
     </div>
 
-    <!-- Audio -->
     <audio id="bg-music" loop src="song.mp3"></audio>
 
     <script>
-        //=====FOR ME HERE=====
+        // ==================== WORD LISTS ====================
+        const positiveWords = [
+            "good", "amazing", "beautiful", "strong", "happy", "confident", "wonderful", "incredible", 
+            "lovely", "fantastic", "great", "awesome", "perfect", "brave", "kind", "smart", "gorgeous",
+            "radiant", "powerful", "joyful", "graceful", "talented", "special", "unique", "bright", "loved"
+        ];
+
+        const negativeWords = [
+            "bad", "horrible", "weak", "sad", "ugly", "terrible", "awful", "depressed", "hate", "angry",
+            "stupid", "useless", "worthless", "lonely", "scared", "tired", "broken", "lost", "empty", "hurt"
+        ];
+
+        // ==================== EDIT THESE MESSAGES ====================
+        const positiveMessage = "I'm so happy you see yourself this way. You are truly special and I love that about you 💕";
+        const negativeMessage = "Even on hard days, remember you are loved and growing every single day. I'm proud of you ❤️";
+        const neutralMessage = "Thank you for sharing how you feel. No matter what, you are important and loved here.";
+
+        // ==================== MAIN CODE ====================
         const slides = [
             { text: "This was you when you were 14, We first met..", image: "IMG_3967.Png" },
             { text: "Then.. This was you when you turned 15, It was when I made you your first gift! The minecraft map!", image: "IMG_3579.png" },
@@ -365,7 +336,7 @@
             }
         }
 
-        // ========== Interactive photo adding ==========
+        // Photo functions
         function addPhotoToPlaceholder(element) {
             const input = document.createElement('input');
             input.type = 'file';
@@ -377,7 +348,7 @@
                 reader.onload = function(ev) {
                     element.style.position = 'relative';
                     element.innerHTML = `
-                        <img src="${ev.target.result}" class="w-full h-full object-cover rounded-[inherit]" alt="Your photo from gallery">
+                        <img src="${ev.target.result}" class="w-full h-full object-cover rounded-[inherit]" alt="Your photo">
                         <div onclick="event.stopImmediatePropagation(); removePhoto(this)" class="absolute top-1 right-1 bg-white/90 hover:bg-white rounded-full w-6 h-6 flex items-center justify-center cursor-pointer shadow-sm border border-rose-200">
                             <i class="fa-solid fa-times text-rose-500 text-xs"></i>
                         </div>
@@ -400,101 +371,136 @@
             card.style.position = '';
         }
 
-        // ========== NEW: Finalize Button + TNT Explosion ==========
+        // ========== ENHANCED TNT EXPLOSION ==========
         function startFinalize() {
-            // Create full-screen TNT explosion overlay
             const overlay = document.createElement('div');
             overlay.className = `fixed inset-0 bg-black z-[999] flex items-center justify-center tnt-overlay`;
             overlay.innerHTML = `
                 <div class="relative w-full max-w-md mx-auto px-6 text-center">
                     <!-- Falling TNT -->
-                    <div class="tnt-block mx-auto mb-8 w-20 h-20 bg-red-600 border-4 border-red-800 rounded flex items-center justify-center shadow-2xl" style="box-shadow: 0 0 30px #ef4444;">
+                    <div class="tnt-block mx-auto mb-8 w-24 h-24 bg-red-600 border-[6px] border-red-900 rounded-xl flex items-center justify-center shadow-[0_0_40px_#ef4444]" style="box-shadow: 0 0 60px #ef4444, inset 0 0 20px #fff;">
                         <div class="text-white text-center">
-                            <div class="text-4xl font-black tracking-widest">TNT</div>
-                            <div class="text-[10px] -mt-1">⚠️</div>
+                            <div class="text-5xl font-black tracking-[4px]">TNT</div>
                         </div>
                     </div>
 
-                    <!-- Explosion effect -->
-                    <div id="explosion-ring" class="explosion mx-auto w-40 h-40 bg-orange-500 rounded-full opacity-0" 
-                         style="box-shadow: 0 0 80px #f97316, 0 0 160px #ef4444;"></div>
+                    <!-- Main Explosion Ring -->
+                    <div id="explosion-ring" class="explosion mx-auto w-48 h-48 bg-orange-500 rounded-full opacity-0" 
+                         style="box-shadow: 0 0 120px #f97316, 0 0 200px #ef4444;"></div>
                 </div>
             `;
             document.body.appendChild(overlay);
 
-            // Trigger explosion animation
+            // Add screen shake + flash
             setTimeout(() => {
+                document.body.classList.add('screen-shake');
+                
+                // Bright flash
+                const flash = document.createElement('div');
+                flash.style.cssText = 'position:fixed;inset:0;background:white;opacity:0.9;z-index:1000;pointer-events:none;';
+                document.body.appendChild(flash);
+                
+                setTimeout(() => {
+                    flash.style.transition = 'opacity 0.4s ease';
+                    flash.style.opacity = '0';
+                    setTimeout(() => flash.remove(), 400);
+                }, 80);
+
                 const ring = document.getElementById('explosion-ring');
                 if (ring) ring.style.opacity = '1';
 
-                // Big flash + particles
-                launchExplosionParticles();
+                launchExplosionParticles(); // More particles
 
-                // After explosion, show the question
+                // Remove shake after animation
+                setTimeout(() => {
+                    document.body.classList.remove('screen-shake');
+                }, 600);
+
+                // Show the question + input after explosion
                 setTimeout(() => {
                     overlay.innerHTML = `
-                        <div class="text-center px-8">
-                            <div class="text-white text-4xl font-bold elegant-text mb-6 drop-shadow-lg">
+                        <div class="text-center px-8 max-w-md mx-auto">
+                            <div class="text-white text-3xl font-bold elegant-text mb-8 drop-shadow-lg">
                                 How do you feel about yourself<br>with one word?
                             </div>
                             
-                            <!-- Positive & Negative sections (ready for you) -->
-                            <div class="mt-8 space-y-6">
-                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/30">
-                                    <div class="text-emerald-300 font-semibold mb-3">Positive words</div>
-                                    <div class="text-white/90 text-sm leading-relaxed">
-                                        <!-- You can add positive words here later -->
-                                    </div>
-                                </div>
+                            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/30">
+                                <input id="feeling-input" type="text" placeholder="Type one word..." 
+                                       class="w-full px-4 py-3 rounded-2xl bg-white/90 text-gray-800 text-center text-lg focus:outline-none">
                                 
-                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/30">
-                                    <div class="text-rose-300 font-semibold mb-3">Negative words</div>
-                                    <div class="text-white/90 text-sm leading-relaxed">
-                                        <!-- You can add negative words here later -->
-                                    </div>
-                                </div>
+                                <button onclick="checkFeelingWord(this)" 
+                                        class="mt-4 w-full py-3 bg-white text-rose-600 font-semibold rounded-2xl hover:bg-rose-50 transition-colors">
+                                    Submit
+                                </button>
                             </div>
                         </div>
                     `;
-                }, 1600);
-            }, 1200);
-
-            // Close overlay when clicking anywhere after explosion
-            setTimeout(() => {
-                overlay.onclick = () => overlay.remove();
-            }, 3500);
+                }, 1700);
+            }, 1150);
         }
 
         function launchExplosionParticles() {
-            const colors = ['#f97316', '#ef4444', '#fbbf24', '#fff'];
-            for (let i = 0; i < 60; i++) {
+            const colors = ['#f97316', '#ef4444', '#fbbf24', '#fff7ed', '#fed7aa'];
+            
+            // Main explosion particles
+            for (let i = 0; i < 90; i++) {
                 setTimeout(() => {
                     const p = document.createElement('div');
                     p.style.position = 'fixed';
                     p.style.left = Math.random() * window.innerWidth + 'px';
-                    p.style.top = (window.innerHeight * 0.4) + 'px';
-                    p.style.width = p.style.height = Math.random() * 10 + 6 + 'px';
+                    p.style.top = (window.innerHeight * 0.38) + 'px';
+                    p.style.width = p.style.height = (Math.random() * 14 + 8) + 'px';
                     p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    p.style.borderRadius = '50%';
+                    p.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
                     p.style.zIndex = '1000';
                     p.style.pointerEvents = 'none';
                     document.body.appendChild(p);
 
                     const angle = Math.random() * Math.PI * 2;
-                    const distance = 150 + Math.random() * 250;
+                    const distance = 180 + Math.random() * 320;
 
                     p.animate([
-                        { transform: `translate(0, 0)`, opacity: 1 },
-                        { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`, opacity: 0 }
+                        { transform: `translate(0, 0) scale(1)`, opacity: 1 },
+                        { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance + 80}px) scale(0.3)`, opacity: 0 }
                     ], {
-                        duration: 900 + Math.random() * 600,
+                        duration: 1100 + Math.random() * 700,
                         easing: 'ease-out'
                     }).onfinish = () => p.remove();
-                }, i * 3);
+                }, i * 2);
             }
         }
 
-        // ========== Music Controls ==========
+        function checkFeelingWord(buttonElement) {
+            const input = document.getElementById('feeling-input');
+            const word = input.value.trim().toLowerCase();
+            const overlay = buttonElement.closest('.fixed');
+
+            let message = neutralMessage;
+            let color = 'text-white';
+
+            if (positiveWords.includes(word)) {
+                message = positiveMessage;
+                color = 'text-emerald-300';
+            } else if (negativeWords.includes(word)) {
+                message = negativeMessage;
+                color = 'text-rose-300';
+            }
+
+            overlay.innerHTML = `
+                <div class="text-center px-8 max-w-md mx-auto">
+                    <div class="text-6xl mb-6">💭</div>
+                    <div class="${color} text-2xl font-semibold mb-6 elegant-text">
+                        ${message}
+                    </div>
+                    <button onclick="this.closest('.fixed').remove()" 
+                            class="mt-4 px-8 py-2.5 bg-white/90 text-rose-600 font-medium rounded-full text-sm">
+                        Close
+                    </button>
+                </div>
+            `;
+        }
+
+        // Music controls (song continues during Finalize)
         function setupMusicControls() {
             audio = document.getElementById('bg-music');
             const toggleBtn = document.getElementById('music-toggle');
