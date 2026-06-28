@@ -79,10 +79,10 @@
         .leaf {
             position: absolute;
             color: #60a5fa;
-            opacity: 0.85;
+            opacity: 0.75;
             pointer-events: none;
             z-index: 1;
-            font-size: 18px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -409,7 +409,7 @@
             card.style.position = '';
         }
 
-        // ========== NIGHTSHADE FINALIZE + BLUE LEAVES ==========
+        // ========== FINALIZE (NO LEAVES IN TNT) ==========
         function startFinalize() {
             const overlay = document.createElement('div');
             overlay.className = `fixed inset-0 z-[999] flex items-center justify-center tnt-overlay nightshade-bg`;
@@ -425,8 +425,6 @@
                 </div>
             `;
             document.body.appendChild(overlay);
-
-            createBlueLeaves(overlay);
 
             setTimeout(() => {
                 const ring = document.getElementById('explosion-ring');
@@ -471,40 +469,44 @@
                                 </div>
                             </div>
                         `;
+                        // Add blue leaves to the question screen
+                        createBlueLeaves(overlay);
                     }, 500);
                 }, 1300);
             }, 1150);
         }
 
+        // Blue leaves function (reusable)
         function createBlueLeaves(container) {
             const leafEmojis = ['🍃', '🌿', '🍂'];
-            for (let i = 0; i < 18; i++) {
+            for (let i = 0; i < 15; i++) {
                 const leaf = document.createElement('div');
                 leaf.className = 'leaf';
                 leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
                 leaf.style.left = Math.random() * 100 + '%';
                 leaf.style.top = '-20px';
                 leaf.style.fontSize = (14 + Math.random() * 10) + 'px';
-                leaf.style.opacity = (0.6 + Math.random() * 0.4);
+                leaf.style.opacity = (0.5 + Math.random() * 0.4);
                 container.appendChild(leaf);
 
-                const duration = 8000 + Math.random() * 7000;
-                const sway = 30 + Math.random() * 40;
+                const duration = 9000 + Math.random() * 8000;
+                const sway = 25 + Math.random() * 45;
 
                 leaf.animate([
                     { transform: `translateY(0) rotate(0deg)` },
-                    { transform: `translateY(${window.innerHeight + 100}px) rotate(${sway}deg)` }
+                    { transform: `translateY(${window.innerHeight + 120}px) rotate(${sway}deg)` }
                 ], {
                     duration: duration,
                     easing: 'linear'
                 }).onfinish = () => leaf.remove();
 
+                // Gentle wind sway
                 setInterval(() => {
                     if (leaf.parentNode) {
                         const currentLeft = parseFloat(leaf.style.left);
-                        leaf.style.left = (currentLeft + (Math.random() - 0.5) * 0.8) + '%';
+                        leaf.style.left = (currentLeft + (Math.random() - 0.5) * 0.7) + '%';
                     }
-                }, 300);
+                }, 350);
             }
         }
 
@@ -678,6 +680,12 @@
 
             const btn = document.getElementById('continue-btn');
             btn.onclick = handleContinueClick;
+
+            // Add blue leaves to the beginning of the website
+            const mainContainer = document.querySelector('.max-w-md');
+            if (mainContainer) {
+                createBlueLeaves(mainContainer);
+            }
         }
 
         window.onload = init;
