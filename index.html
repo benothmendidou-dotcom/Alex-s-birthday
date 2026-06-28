@@ -47,14 +47,12 @@
 
         .placeholder-card {
             transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                        box-shadow 0.2s ease, 
-                        background-color 0.2s ease;
+                        box-shadow 0.2s ease;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
         .placeholder-card:hover {
             transform: scale(1.08) rotate(2deg);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            background-color: #fff1f2;
         }
         .placeholder-card:active {
             transform: scale(0.95) rotate(0deg);
@@ -64,20 +62,20 @@
 <body class="bg-gradient-to-br from-rose-50 via-white to-pink-50 min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full mx-auto">
         
-        <!-- Top decorative placeholders (3 medium ones) -->
+        <!-- Top decorative placeholders (3 medium ones) - tap to add YOUR photos from gallery -->
         <div class="flex justify-center gap-3 mb-6">
-            <div onclick="tapPlaceholder()" 
-                 class="placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+            <div onclick="addPhotoToPlaceholder(this)" 
+                 class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
-            <div onclick="tapPlaceholder()" 
-                 class="placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+            <div onclick="addPhotoToPlaceholder(this)" 
+                 class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
-            <div onclick="tapPlaceholder()" 
-                 class="placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
+            <div onclick="addPhotoToPlaceholder(this)" 
+                 class="top-placeholder placeholder-card w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer shadow-lg">
                 <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
                 <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
             </div>
@@ -99,32 +97,32 @@
             
             <!-- LEFT side placeholders (2 + 1 more) -->
             <div class="absolute -left-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="tapPlaceholder()" 
-                     class="placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" 
+                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="tapPlaceholder()" 
-                     class="placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" 
+                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="tapPlaceholder()" 
-                     class="placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" 
+                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
             </div>
 
             <!-- RIGHT side placeholders (2 + 1 more) -->
             <div class="absolute -right-3 top-4 flex flex-col gap-2.5 z-20">
-                <div onclick="tapPlaceholder()" 
-                     class="placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" 
+                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="tapPlaceholder()" 
-                     class="placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" 
+                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
-                <div onclick="tapPlaceholder()" 
-                     class="placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
+                <div onclick="addPhotoToPlaceholder(this)" 
+                     class="side-placeholder placeholder-card w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 border-2 border-rose-200 rounded-2xl flex items-center justify-center cursor-pointer shadow-md">
                     <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
                 </div>
             </div>
@@ -188,7 +186,7 @@
 
         <!-- Footer -->
         <div class="text-center mt-8">
-            <p class="text-xs text-gray-400">Open this on your phone • Tap the button to go through each memory</p>
+            <p class="text-xs text-gray-400">Open this on your phone • Tap the button to go through each memory • Tap the + to add your own photos!</p>
         </div>
 
     </div>
@@ -216,47 +214,6 @@
         </div>
     </div>
 
-    <!-- Placeholder Info Modal (helpful & loving) -->
-    <div id="placeholder-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onclick="closePlaceholderModal()">
-        <div class="bg-white rounded-3xl max-w-[92%] w-full max-w-sm overflow-hidden shadow-2xl" onclick="event.stopImmediatePropagation()">
-            <div class="p-6 text-center">
-                <div class="mx-auto w-16 h-16 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full flex items-center justify-center mb-4">
-                    <i class="fa-solid fa-plus text-4xl text-rose-400"></i>
-                </div>
-                
-                <h3 class="text-2xl font-bold text-rose-600 elegant-text mb-2">This spot is for YOU 💕</h3>
-                
-                <p class="text-gray-600 leading-relaxed mb-5">
-                    These are placeholder cards waiting for your real photos from your device!
-                </p>
-                
-                <div class="bg-rose-50 rounded-2xl p-4 text-left text-sm text-gray-700 mb-5">
-                    <p class="font-semibold text-rose-600 mb-2">How to add your photos:</p>
-                    <ol class="list-decimal list-inside space-y-1 text-xs">
-                        <li>Open this HTML file in a text editor</li>
-                        <li>Find the placeholder cards (they have the big +)</li>
-                        <li>Replace them with your photos like:<br>
-                            <span class="font-mono text-[10px] bg-white px-1.5 py-0.5 rounded">&lt;img src="yourphoto.jpg"&gt;</span>
-                        </li>
-                        <li>Do the same for the 4 main memory photos below</li>
-                    </ol>
-                </div>
-                
-                <p class="text-xs text-rose-500">
-                    Once you add your photos, this site will feel 100% yours ❤️
-                </p>
-            </div>
-            
-            <div class="border-t border-rose-100 px-6 py-4 flex justify-center">
-                <button onclick="closePlaceholderModal()" 
-                        class="px-8 py-2.5 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-sm font-semibold rounded-full flex items-center gap-2 transition-colors">
-                    <span>Got it, thanks!</span>
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Audio -->
     <audio id="bg-music" loop src="song.mp3"></audio>
 
@@ -265,26 +222,21 @@
         const slides = [
             {
                 text: "This was you when you were 14",
-                image: "https://picsum.photos/id/1009/600/800"   // ← REPLACE with your real photo (e.g. "IMG_3967.Png")
+                image: "https://picsum.photos/id/1009/600/800"   // ← You can replace these 4 with your real photos if you want
             },
             {
                 text: "This was you when you were 15",
-                image: "https://picsum.photos/id/1012/600/800"   // ← REPLACE with your real photo
+                image: "https://picsum.photos/id/1012/600/800"
             },
             {
                 text: "This was you when you were 16",
-                image: "https://picsum.photos/id/160/600/800"    // ← REPLACE with your real photo
+                image: "https://picsum.photos/id/160/600/800"
             },
             {
                 text: "And today, you are 17..",
-                image: "https://picsum.photos/id/201/600/800"    // ← REPLACE with your real photo
+                image: "https://picsum.photos/id/201/600/800"
             }
         ];
-
-        // IMPORTANT INSTRUCTIONS FOR YOU:
-        // 1. Replace the 4 image URLs above with your actual photos from your device (the IMG_.... files)
-        // 2. If you're hosting on GitHub Pages, upload your photos to the same repo folder and use relative paths like "IMG_3967.Png"
-        // 3. The 9 "+" cards above and on the sides are also placeholders — tapping them shows instructions
         // ========================================================
 
         let currentSlide = 0;
@@ -426,26 +378,61 @@
             }
         }
 
-        function tapPlaceholder() {
-            const modal = document.getElementById('placeholder-modal');
-            modal.classList.remove('hidden');
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.style.transition = 'opacity 0.2s ease';
-                modal.style.opacity = '1';
-            }, 10);
+        // ========== NEW: Interactive photo adding from visitor's gallery ==========
+        function addPhotoToPlaceholder(element) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    // Turn this placeholder into her photo
+                    element.style.position = 'relative';
+                    element.innerHTML = `
+                        <img src="${ev.target.result}" 
+                             class="w-full h-full object-cover rounded-[inherit]" 
+                             alt="Your photo from gallery">
+                        
+                        <!-- Small remove button -->
+                        <div onclick="event.stopImmediatePropagation(); removePhoto(this)" 
+                             class="absolute top-1 right-1 bg-white/90 hover:bg-white rounded-full w-6 h-6 flex items-center justify-center cursor-pointer shadow-sm border border-rose-200">
+                            <i class="fa-solid fa-times text-rose-500 text-xs"></i>
+                        </div>
+                    `;
+                    
+                    // Tapping the photo again lets her change/replace it
+                    element.onclick = () => addPhotoToPlaceholder(element);
+                };
+                reader.readAsDataURL(file);
+            };
+            
+            input.click(); // This opens the gallery and asks for permission
         }
 
-        function closePlaceholderModal() {
-            const modal = document.getElementById('placeholder-modal');
-            modal.style.transition = 'opacity 0.2s ease';
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.style.opacity = '1';
-                modal.style.transition = '';
-            }, 200);
+        function removePhoto(closeBtn) {
+            const card = closeBtn.parentElement;
+            
+            // Restore the original + look depending on size
+            if (card.classList.contains('top-placeholder')) {
+                card.innerHTML = `
+                    <i class="fa-solid fa-plus text-3xl text-rose-400"></i>
+                    <span class="text-[10px] text-rose-500 font-medium mt-0.5 tracking-wide">Add photo</span>
+                `;
+            } else {
+                card.innerHTML = `
+                    <i class="fa-solid fa-plus text-2xl text-rose-400"></i>
+                `;
+            }
+            
+            // Reset click behavior
+            card.onclick = () => addPhotoToPlaceholder(card);
+            card.style.position = '';
         }
+        // ========================================================================
 
         function setupMusicControls() {
             audio = document.getElementById('bg-music');
@@ -476,7 +463,7 @@
                 audio.volume = parseFloat(this.value);
             };
 
-            // Auto-pause when leaving the browser/tab
+            // Auto-pause when she leaves the browser/tab
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden && audio && !audio.paused) {
                     audio.pause();
